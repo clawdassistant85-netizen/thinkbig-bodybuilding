@@ -15,134 +15,242 @@ export interface Props {
     topics: string[];
     icon: string;
   };
+  index?: number;
 }
 
-const { show } = Astro.props;
+const { show, index = 0 } = Astro.props;
 ---
 
-<article
-  class="tb-card group relative rounded-lg overflow-hidden p-6 md:p-7 flex flex-col gap-4 border-l-4"
-  style={`border-left-color:${show.color}; box-shadow: 0 0 0 1px #222 inset;`}
+<a
+  href={`/${show.slug}`}
+  class="show-panel group block relative overflow-hidden"
+  style={`--c:${show.color};`}
 >
-  <!-- Hover glow -->
-  <div
-    class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
-    style={`background: radial-gradient(ellipse at top left, ${show.color}22, transparent 60%);`}
-  >
+  <!-- Left color stripe -->
+  <div class="show-stripe" aria-hidden="true">
+    <span class="show-abbr">{show.shortName}</span>
   </div>
 
-  <div class="relative flex items-start justify-between gap-4">
-    <div class="flex items-center gap-3">
-      <span
-        class="text-3xl leading-none select-none"
-        aria-hidden="true">{show.icon}</span
-      >
+  <!-- Content -->
+  <div class="show-body">
+    <!-- Top: name + count -->
+    <div class="show-top">
       <div>
-        <a
-          href={`/${show.slug}`}
-          class="block text-xl md:text-2xl font-black text-white tracking-tight hover:underline"
-          style={`text-decoration-color:${show.color};`}
-        >
+        <h3 class="show-name group-hover:underline" style={`text-decoration-color:${show.color};`}>
           {show.name}
-        </a>
-        <p
-          class="tb-label mt-1"
-          style={`color:${show.color};`}
+        </h3>
+        <p class="show-tagline" style={`color:${show.color};`}>{show.tagline}</p>
+      </div>
+      <span class="show-count" style={`color:${show.color}; border-color:${show.color}44; background:${show.color}14;`}>
+        {show.episodeCount}&thinsp;eps
+      </span>
+    </div>
+
+    <!-- Description -->
+    <p class="show-desc">{show.description}</p>
+
+    <!-- Bottom: hosts + CTAs -->
+    <div class="show-bottom">
+      <p class="show-hosts">
+        {show.hosts.join(' · ')}
+      </p>
+      <div class="show-actions" onclick="event.preventDefault(); event.stopPropagation();">
+        <a
+          href={show.spotifyUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Listen on Spotify"
+          class="show-btn-icon"
+          title="Spotify"
         >
-          {show.tagline}
-        </p>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+        </a>
+        <a
+          href={show.appleUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Listen on Apple Podcasts"
+          class="show-btn-icon"
+          title="Apple Podcasts"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 4.1c3.2 0 5.8 2.6 5.8 5.8 0 2.2-1.2 4.1-3 5.1v1c0 .8-.6 1.5-1.4 1.6l-.1.1c-.4 1-1.4 1.7-2.6 1.7-1.3 0-2.3-.8-2.7-1.9-.7-.2-1.2-.9-1.2-1.6v-.9c-1.8-1-3-2.9-3-5.1 0-3.2 2.6-5.8 5.8-5.8h2.4zM12 6c-2.2 0-4 1.8-4 4 0 1.5.9 2.9 2.2 3.5v-1.1c0-.5.4-.9.9-.9h1.7c.5 0 .9.4.9.9v1.1c1.3-.6 2.2-2 2.2-3.5 0-2.2-1.8-4-3.9-4z"/></svg>
+        </a>
+        <span class="show-cta" style={`background:${show.color};`}>
+          Listen
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
       </div>
     </div>
-    <span
-      class="shrink-0 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded border"
-      style={`color:${show.color}; border-color:${show.color}55; background:${show.color}11;`}
-    >
-      {show.episodeCount} eps
-    </span>
   </div>
 
-  <p class="relative text-sm text-neutral-400 leading-relaxed">
-    {show.description}
-  </p>
+  <!-- Hover glow -->
+  <div class="show-glow" style={`background: linear-gradient(90deg, ${show.color}1a 0%, transparent 50%);`} aria-hidden="true"></div>
+</a>
 
-  <!-- Hosts -->
-  <div class="relative flex flex-wrap gap-2">
-    {
-      show.hosts.map((h) => (
-        <span class="text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full bg-[#1f1f1f] text-neutral-300 border border-[#2a2a2a]">
-          {h}
-        </span>
-      ))
-    }
-  </div>
+<style>
+  .show-panel {
+    display: flex;
+    background: #111;
+    border: 1px solid #1f1f1f;
+    transition: border-color 200ms, transform 150ms;
+    text-decoration: none;
+    color: inherit;
+  }
+  .show-panel:hover {
+    border-color: var(--c);
+    transform: translateX(2px);
+  }
 
-  <!-- Topics -->
-  <div class="relative flex flex-wrap gap-1.5 pt-1">
-    {
-      show.topics.map((t) => (
-        <span class="text-[10px] text-neutral-500 px-2 py-0.5 rounded bg-[#161616] border border-[#222]">
-          {t}
-        </span>
-      ))
-    }
-  </div>
+  .show-stripe {
+    flex-shrink: 0;
+    width: 56px;
+    background: var(--c);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .show-abbr {
+    font-size: 0.6rem;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.55);
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    user-select: none;
+  }
 
-  <!-- CTAs -->
-  <div class="relative flex items-center gap-3 pt-3 mt-auto">
-    <a
-      href={`/${show.slug}`}
-      class="inline-flex items-center gap-2 px-4 py-2 rounded text-xs font-bold uppercase tracking-widest text-white transition-transform hover:-translate-y-0.5"
-      style={`background:${show.color};`}
-    >
-      Listen Now
-      <svg
-        width="14"
-        height="14"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        ><line x1="5" y1="12" x2="19" y2="12"></line><polyline
-          points="12 5 19 12 12 19"></polyline></svg
-      >
-    </a>
-    <a
-      href={show.spotifyUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Spotify"
-      class="p-2 rounded border border-[#222] text-neutral-400 hover:text-[#1DB954] hover:border-[#1DB954] transition-colors"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        ><path
-          d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"
-        ></path></svg
-      >
-    </a>
-    <a
-      href={show.appleUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Apple Podcasts"
-      class="p-2 rounded border border-[#222] text-neutral-400 hover:text-[#a66cff] hover:border-[#a66cff] transition-colors"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        ><path
-          d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 4.1c3.2 0 5.8 2.6 5.8 5.8 0 2.2-1.2 4.1-3 5.1v1c0 .8-.6 1.5-1.4 1.6l-.1.1c-.4 1-1.4 1.7-2.6 1.7-1.3 0-2.3-.8-2.7-1.9-.7-.2-1.2-.9-1.2-1.6v-.9c-1.8-1-3-2.9-3-5.1 0-3.2 2.6-5.8 5.8-5.8h2.4zM12 6c-2.2 0-4 1.8-4 4 0 1.5.9 2.9 2.2 3.5v-1.1c0-.5.4-.9.9-.9h1.7c.5 0 .9.4.9.9v1.1c1.3-.6 2.2-2 2.2-3.5 0-2.2-1.8-4-3.9-4z"
-        ></path></svg
-      >
-    </a>
-  </div>
-</article>
+  .show-body {
+    flex: 1;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    position: relative;
+    z-index: 1;
+    min-width: 0;
+  }
+
+  .show-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .show-name {
+    font-size: 1.35rem;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin: 0;
+  }
+  @media (min-width: 640px) {
+    .show-name { font-size: 1.6rem; }
+    .show-stripe { width: 68px; }
+    .show-abbr { font-size: 0.65rem; }
+  }
+
+  .show-tagline {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    margin-top: 0.25rem;
+  }
+
+  .show-count {
+    flex-shrink: 0;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding: 0.25rem 0.6rem;
+    border-radius: 3px;
+    border: 1px solid;
+    white-space: nowrap;
+  }
+
+  .show-desc {
+    font-size: 0.82rem;
+    color: #888;
+    line-height: 1.55;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .show-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 0.2rem;
+  }
+
+  .show-hosts {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 0;
+  }
+
+  .show-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .show-btn-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    border: 1px solid #2a2a2a;
+    color: #555;
+    text-decoration: none;
+    transition: color 150ms, border-color 150ms;
+  }
+  .show-btn-icon:hover {
+    color: #fff;
+    border-color: #444;
+  }
+
+  .show-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.35rem 0.8rem;
+    border-radius: 3px;
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #fff;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .show-glow {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 200ms;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .show-panel:hover .show-glow {
+    opacity: 1;
+  }
+</style>

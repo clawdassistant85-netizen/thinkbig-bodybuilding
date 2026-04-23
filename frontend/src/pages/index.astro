@@ -26,250 +26,438 @@ function accentFor(showCodes) {
 ---
 
 <Layout title={title} description={description}>
-  <!-- HERO -->
-  <section class="relative overflow-hidden tb-hero-glow">
-    <div
-      class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-24 md:pt-28 md:pb-32"
-    >
-      <div class="max-w-4xl">
-        <span class="tb-label text-[#dc2626]">Since 2014 · 1,000+ episodes</span>
-        <h1
-          class="mt-5 text-4xl sm:text-5xl md:text-7xl font-black tracking-tight leading-[1.02] text-white"
-        >
-          The Bodybuilding Podcast Network That
-          <span class="text-[#dc2626]">Goes There.</span>
-        </h1>
-        <p
-          class="mt-6 text-base md:text-xl text-neutral-400 max-w-2xl leading-relaxed"
-        >
-          Four hardcore shows. One network. Over a thousand combined episodes
-          from IFBB Pros, elite prep coaches, and a PhD exercise physiologist —
-          answering real listener questions about training, nutrition, PEDs,
-          and the business of building a championship physique.
-        </p>
-        <div class="mt-8 flex flex-wrap items-center gap-3">
-          <a
-            href={social.youtube}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 px-5 py-3 rounded bg-[#dc2626] text-white text-sm font-bold uppercase tracking-widest hover:bg-[#b91c1c] transition-colors"
-          >
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              ><path
-                d="M23.498 6.186a2.99 2.99 0 0 0-2.107-2.117C19.455 3.55 12 3.55 12 3.55s-7.455 0-9.391.519A2.99 2.99 0 0 0 .502 6.186C0 8.132 0 12 0 12s0 3.868.502 5.814a2.99 2.99 0 0 0 2.107 2.117c1.936.519 9.391.519 9.391.519s7.455 0 9.391-.519a2.99 2.99 0 0 0 2.107-2.117C24 15.868 24 12 24 12s0-3.868-.502-5.814zM9.546 15.568V8.432L15.818 12l-6.272 3.568z"
-              ></path></svg
-            >
-            Watch on YouTube
-          </a>
-          <a
-            href={social.spotify}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 px-5 py-3 rounded bg-transparent border border-[#333] text-white text-sm font-bold uppercase tracking-widest hover:border-[#1DB954] hover:text-[#1DB954] transition-colors"
-          >
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              ><path
-                d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"
-              ></path></svg
-            >
-            Listen on Spotify
-          </a>
-        </div>
 
-        <!-- Inline show chips -->
-        <div class="mt-10 flex flex-wrap gap-2">
-          {
-            shows.map((show) => (
-              <a
-                href={`/${show.slug}`}
-                class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-semibold text-neutral-300 hover:text-white transition-colors"
-                style={`border-color:${show.color}55; background:${show.color}11;`}
-              >
-                <span
-                  class="w-1.5 h-1.5 rounded-full"
-                  style={`background:${show.color};`}
-                />
-                {show.name}
-              </a>
-            ))
-          }
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- ─── HERO ──────────────────────────────────────── -->
+  <section class="hero-section">
+    <!-- decorative background numbers -->
+    <div class="hero-bg-num" aria-hidden="true">1,000+</div>
 
-  <!-- THE SHOWS -->
-  <section class="relative py-20 md:py-24">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-end justify-between mb-10 gap-4 flex-wrap">
-        <div>
-          <span class="tb-label text-[#dc2626]">The Network</span>
-          <h2
-            class="mt-2 text-3xl md:text-5xl font-black tracking-tight text-white"
-          >
-            Four Shows. One Network.
-          </h2>
-          <p class="mt-3 text-neutral-400 max-w-2xl">
-            Each show has its own voice, hosts, and focus — but they all share
-            one standard: real answers from people who've actually been there.
-          </p>
-        </div>
+    <div class="hero-inner">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
+        Since 2014 &nbsp;·&nbsp; 4 Shows &nbsp;·&nbsp; 1,000+ Episodes
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {shows.map((show) => <ShowCard show={show} />)}
-      </div>
-    </div>
-  </section>
+      <h1 class="hero-h1">
+        The Bodybuilding Podcast<br />
+        Network That<br />
+        <span class="hero-red">Goes There.</span>
+      </h1>
 
-  <!-- FEATURED VIDEO -->
-  <section class="relative py-20 md:py-24 bg-[#0c0c0c] border-y border-[#222]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-end justify-between mb-8 gap-4 flex-wrap">
-        <div>
-          <span class="tb-label text-[#d97706]">Watch</span>
-          <h2
-            class="mt-2 text-3xl md:text-5xl font-black tracking-tight text-white"
-          >
-            Latest From The Network
-          </h2>
-        </div>
-        <a
-          href={social.youtube}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-[#dc2626] hover:text-white transition-colors"
-        >
-          Full Channel
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            ><line x1="5" y1="12" x2="19" y2="12"></line><polyline
-              points="12 5 19 12 12 19"></polyline></svg
-          >
+      <p class="hero-sub">
+        IFBB Pros, elite prep coaches, and a PhD exercise physiologist —
+        answering real listener questions about training, nutrition, PEDs, and
+        building a championship physique.
+      </p>
+
+      <div class="hero-ctas">
+        <a href={social.youtube} target="_blank" rel="noopener noreferrer" class="cta-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a2.99 2.99 0 0 0-2.107-2.117C19.455 3.55 12 3.55 12 3.55s-7.455 0-9.391.519A2.99 2.99 0 0 0 .502 6.186C0 8.132 0 12 0 12s0 3.868.502 5.814a2.99 2.99 0 0 0 2.107 2.117c1.936.519 9.391.519 9.391.519s7.455 0 9.391-.519a2.99 2.99 0 0 0 2.107-2.117C24 15.868 24 12 24 12s0-3.868-.502-5.814zM9.546 15.568V8.432L15.818 12l-6.272 3.568z"/></svg>
+          Watch on YouTube
+        </a>
+        <a href={social.spotify} target="_blank" rel="noopener noreferrer" class="cta-secondary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+          Listen on Spotify
         </a>
       </div>
-      <div class="max-w-5xl mx-auto">
+    </div>
+
+    <!-- stats strip -->
+    <div class="hero-stats">
+      {[
+        { value: "4", label: "Shows" },
+        { value: "1,000+", label: "Episodes" },
+        { value: "Top 1%", label: "Podcasts" },
+        { value: "700+", label: "★ Reviews" },
+      ].map((s) => (
+        <div class="hero-stat">
+          <span class="stat-val">{s.value}</span>
+          <span class="stat-lbl">{s.label}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ─── SHOW PANELS ───────────────────────────────── -->
+  <section class="shows-section">
+    <div class="shows-header-wrap">
+      <div class="shows-header">
+        <span class="section-eyebrow">The Network</span>
+        <h2 class="section-h2">Four Shows. One Network.</h2>
+      </div>
+      <p class="section-sub">
+        Each show has its own voice, hosts, and focus — but they all share one standard:
+        real answers from people who've actually been there.
+      </p>
+    </div>
+
+    <div class="shows-list">
+      {shows.map((show, i) => <ShowCard show={show} index={i} />)}
+    </div>
+  </section>
+
+  <!-- ─── FEATURED VIDEO ────────────────────────────── -->
+  <section class="video-section">
+    <div class="section-wrap">
+      <div class="video-header">
+        <div>
+          <span class="section-eyebrow" style="color:#d97706">Watch</span>
+          <h2 class="section-h2">Latest From The Network</h2>
+        </div>
+        <a href={social.youtube} target="_blank" rel="noopener noreferrer" class="channel-link">
+          Full Channel
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+      <div class="video-wrap">
         <YouTubeEmbed videoId="pjBYVpp0U7E" title="Drugs N Stuff — Featured Episode" />
       </div>
     </div>
   </section>
 
-  <!-- BY THE NUMBERS -->
-  <section class="relative py-16 md:py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-        {
-          [
-            { value: "4", label: "Shows" },
-            { value: "1,000+", label: "Episodes" },
-            { value: "Top 1%", label: "Podcasts" },
-            { value: "700+", label: "★ Reviews" },
-          ].map((stat) => (
-            <div class="tb-card rounded-lg p-6 text-center">
-              <div class="text-3xl md:text-5xl font-black text-white tracking-tight">
-                {stat.value}
-              </div>
-              <div class="tb-label mt-2 text-[#dc2626]">{stat.label}</div>
-            </div>
-          ))
-        }
+  <!-- ─── HOSTS ─────────────────────────────────────── -->
+  <section class="hosts-section">
+    <div class="section-wrap">
+      <span class="section-eyebrow">The Roster</span>
+      <h2 class="section-h2">Meet The Voices</h2>
+      <p class="section-sub" style="margin-bottom:2.5rem;">
+        IFBB Pros, veteran prep coaches, a PhD exercise physiologist, and a
+        harm-reduction specialist. Real experience, real credentials, real talk.
+      </p>
+      <div class="hosts-grid">
+        {hosts.map((h) => (
+          <HostCard
+            name={h.name}
+            role={h.role}
+            shows={h.shows}
+            bio={h.bio}
+            accent={accentFor(h.shows)}
+          />
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- THE HOSTS -->
-  <section class="relative py-20 md:py-24 bg-[#0c0c0c] border-y border-[#222]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="mb-10">
-        <span class="tb-label text-[#dc2626]">The Roster</span>
-        <h2
-          class="mt-2 text-3xl md:text-5xl font-black tracking-tight text-white"
-        >
-          Meet The Voices
-        </h2>
-        <p class="mt-3 text-neutral-400 max-w-2xl">
-          IFBB Pros, veteran prep coaches, a PhD exercise physiologist, and a
-          harm-reduction specialist. Real experience, real credentials, real
-          talk.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {
-          hosts.map((h) => (
-            <HostCard
-              name={h.name}
-              role={h.role}
-              shows={h.shows}
-              bio={h.bio}
-              accent={accentFor(h.shows)}
-            />
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <!-- SPONSORS -->
+  <!-- ─── SPONSORS ──────────────────────────────────── -->
   <SponsorBar />
 
-  <!-- LISTEN EVERYWHERE -->
-  <section class="relative py-20 md:py-24">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-2xl mx-auto mb-10">
-        <span class="tb-label text-[#dc2626]">Listen Everywhere</span>
-        <h2
-          class="mt-2 text-3xl md:text-5xl font-black tracking-tight text-white"
-        >
-          Pick Your Platform.
-        </h2>
-        <p class="mt-3 text-neutral-400">
-          Every show is available on every major platform. New episodes weekly.
-        </p>
+  <!-- ─── LISTEN EVERYWHERE ────────────────────────── -->
+  <section class="listen-section">
+    <div class="section-wrap">
+      <div style="text-align:center; max-width:36rem; margin:0 auto 2.5rem;">
+        <span class="section-eyebrow">Listen Everywhere</span>
+        <h2 class="section-h2">Pick Your Platform.</h2>
+        <p class="section-sub">Every show. Every platform. New episodes weekly.</p>
       </div>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {
-          [
-            { name: "Spotify", url: social.spotify, color: "#1DB954" },
-            { name: "Apple Podcasts", url: social.apple, color: "#a66cff" },
-            { name: "YouTube", url: social.youtube, color: "#dc2626" },
-            { name: "SoundCloud", url: social.soundcloud, color: "#ff7700" },
-          ].map((p) => (
-            <a
-              href={p.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="tb-card group rounded-lg p-6 flex flex-col items-center justify-center gap-2 text-center"
-              style={`--accent:${p.color};`}
-            >
-              <span
-                class="text-lg font-bold text-white group-hover:text-[var(--accent)] transition-colors"
-                style={`--accent:${p.color};`}
-              >
-                {p.name}
-              </span>
-              <span class="text-xs text-neutral-500 uppercase tracking-widest">
-                Listen Now →
-              </span>
-            </a>
-          ))
-        }
+      <div class="platforms-grid">
+        {[
+          { name: "Spotify", url: social.spotify, color: "#1DB954" },
+          { name: "Apple Podcasts", url: social.apple, color: "#a66cff" },
+          { name: "YouTube", url: social.youtube, color: "#dc2626" },
+          { name: "SoundCloud", url: social.soundcloud, color: "#ff7700" },
+        ].map((p) => (
+          <a
+            href={p.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="platform-card"
+            style={`--accent:${p.color};`}
+          >
+            <span class="platform-name">{p.name}</span>
+            <span class="platform-cta">Listen Now →</span>
+          </a>
+        ))}
       </div>
     </div>
   </section>
+
 </Layout>
+
+<style>
+  /* ─── layout helpers ──────────────────────────────── */
+  .section-wrap {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .section-eyebrow {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: #dc2626;
+    margin-bottom: 0.5rem;
+  }
+  .section-h2 {
+    font-size: clamp(1.75rem, 4vw, 3rem);
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -0.025em;
+    line-height: 1.08;
+    margin: 0 0 0.5rem;
+  }
+  .section-sub {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ─── HERO ──────────────────────────────────────── */
+  .hero-section {
+    position: relative;
+    background:
+      radial-gradient(ellipse 70% 60% at 20% -10%, rgba(220,38,38,0.22), transparent),
+      radial-gradient(ellipse 50% 50% at 100% 60%, rgba(217,119,6,0.07), transparent),
+      #090909;
+    overflow: hidden;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .hero-bg-num {
+    position: absolute;
+    right: -1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: clamp(8rem, 22vw, 22rem);
+    font-weight: 900;
+    color: rgba(255,255,255,0.025);
+    letter-spacing: -0.05em;
+    line-height: 1;
+    user-select: none;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 5rem 1.5rem 3rem;
+  }
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: #555;
+    margin-bottom: 1.5rem;
+  }
+  .eyebrow-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #dc2626;
+    flex-shrink: 0;
+    box-shadow: 0 0 8px #dc2626;
+  }
+  .hero-h1 {
+    font-size: clamp(2.4rem, 6.5vw, 5.5rem);
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -0.035em;
+    line-height: 1.05;
+    margin: 0 0 1.5rem;
+  }
+  .hero-red { color: #dc2626; }
+  .hero-sub {
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    color: #666;
+    line-height: 1.65;
+    max-width: 40rem;
+    margin: 0 0 2rem;
+  }
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: #dc2626;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: background 150ms;
+  }
+  .cta-primary:hover { background: #b91c1c; }
+  .cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: transparent;
+    color: #aaa;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    border: 1px solid #2a2a2a;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: color 150ms, border-color 150ms;
+  }
+  .cta-secondary:hover { color: #1DB954; border-color: #1DB954; }
+
+  .hero-stats {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    border-top: 1px solid #1a1a1a;
+  }
+  .hero-stat {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 1rem;
+    border-right: 1px solid #1a1a1a;
+  }
+  .hero-stat:last-child { border-right: none; }
+  .stat-val {
+    font-size: clamp(1.4rem, 3.5vw, 2.5rem);
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .stat-lbl {
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #dc2626;
+    margin-top: 0.35rem;
+  }
+
+  /* ─── SHOWS ─────────────────────────────────────── */
+  .shows-section {
+    padding: 5rem 0 0;
+  }
+  .shows-header-wrap {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1.5rem 2.5rem;
+  }
+  .shows-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+  }
+  .shows-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    border-top: 1px solid #1a1a1a;
+  }
+
+  /* ─── VIDEO ─────────────────────────────────────── */
+  .video-section {
+    padding: 5rem 0;
+    background: #0c0c0c;
+    border-top: 1px solid #1a1a1a;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .video-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+  .channel-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #dc2626;
+    text-decoration: none;
+    transition: color 150ms;
+  }
+  .channel-link:hover { color: #fff; }
+  .video-wrap {
+    max-width: 56rem;
+    margin: 0 auto;
+  }
+
+  /* ─── HOSTS ─────────────────────────────────────── */
+  .hosts-section {
+    padding: 5rem 0;
+    background: #0a0a0a;
+    border-top: 1px solid #1a1a1a;
+  }
+  .hosts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  @media (min-width: 640px) {
+    .hosts-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    .hosts-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  /* ─── LISTEN ─────────────────────────────────────── */
+  .listen-section {
+    padding: 5rem 0;
+    border-top: 1px solid #1a1a1a;
+  }
+  .platforms-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  @media (min-width: 640px) {
+    .platforms-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+  .platform-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 1.75rem 1rem;
+    background: #111;
+    border: 1px solid #1f1f1f;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: border-color 150ms, transform 150ms;
+  }
+  .platform-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .platform-name {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #fff;
+    transition: color 150ms;
+  }
+  .platform-card:hover .platform-name { color: var(--accent); }
+  .platform-cta {
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #444;
+  }
+</style>
