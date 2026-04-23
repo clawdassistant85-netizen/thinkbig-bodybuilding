@@ -1,0 +1,361 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { sponsors } from "../data/social.js";
+
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout
+  title="Partners — Think BIG Bodybuilding"
+  description="Every partner on this list has been vetted, used, and trusted by the Think BIG hosts. No paid placements that don't get used."
+>
+  <!-- ─── HERO ─────────────────────────────────────── -->
+  <section class="partners-hero">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <span class="hero-eyebrow">Partners</span>
+      <h1 class="hero-h1">The Brands That Back<br />This Network.</h1>
+      <p class="hero-sub">
+        Every partner on this list has been vetted, used, and trusted by the
+        hosts. No paid placements that don't get used.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── PARTNERS GRID ────────────────────────────── -->
+  <section class="partners-section">
+    <div class="section-inner">
+      <div class="partners-grid">
+        {
+          sponsors.map((partner) => (
+            <div class="partner-card" style={`--partner-color:${partner.color};`}>
+              <!-- Header -->
+              <div class="partner-header">
+                <div>
+                  <h2 class="partner-name" style={`color:${partner.color};`}>
+                    {partner.name}
+                  </h2>
+                  <span class="partner-category">{partner.category}</span>
+                </div>
+              </div>
+
+              <!-- Description -->
+              <p class="partner-desc">{partner.fullDescription}</p>
+
+              <!-- Discount code -->
+              {partner.code && (
+                <div
+                  class="partner-code-box"
+                  style={`border-color:${partner.color}33; background:${partner.color}0d;`}
+                >
+                  <span class="code-label">Discount Code</span>
+                  <span class="code-value" style={`color:${partner.color};`}>
+                    {partner.code}
+                  </span>
+                </div>
+              )}
+
+              <!-- CTA -->
+              <a
+                href={partner.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="partner-cta"
+                style={`color:${partner.color}; border-color:${partner.color};`}
+              >
+                Visit {partner.name} &rarr;
+              </a>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── BOTTOM CTA ────────────────────────────────── -->
+  <section class="bottom-cta">
+    <div class="cta-inner">
+      <span class="cta-eyebrow">Work With Us</span>
+      <h2 class="cta-heading">Want to partner with the Think BIG network?</h2>
+      <p class="cta-sub">
+        Reach out directly. Every partnership starts with a real conversation
+        about fit, not just a media kit.
+      </p>
+      <a href="mailto:mcnallydiets@gmail.com" class="cta-button">
+        mcnallydiets@gmail.com
+      </a>
+    </div>
+  </section>
+
+  <!-- ─── BACK LINK ────────────────────────────────── -->
+  <div class="back-wrap">
+    <a href={base} class="back-link">
+      <span aria-hidden="true">←</span> Back to Home
+    </a>
+  </div>
+</Layout>
+
+<style>
+  /* ─── Hero ──────────────────────────────────────── */
+  .partners-hero {
+    position: relative;
+    background: #0a0a0a;
+    border-bottom: 1px solid #1a1a1a;
+    overflow: hidden;
+    padding: 5rem 1.5rem 4rem;
+    text-align: center;
+  }
+
+  .hero-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse 60% 50% at 50% 0%,
+      rgba(217, 119, 6, 0.12),
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 48rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: #d97706;
+  }
+
+  .hero-h1 {
+    font-size: clamp(2.2rem, 5.5vw, 4.5rem);
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -0.035em;
+    line-height: 1.05;
+    margin: 0;
+  }
+
+  .hero-sub {
+    font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+    color: #666;
+    line-height: 1.65;
+    max-width: 38rem;
+    margin: 0.5rem 0 0;
+  }
+
+  /* ─── Partners section ───────────────────────────── */
+  .partners-section {
+    padding: 4rem 1.5rem;
+    border-bottom: 1px solid #1a1a1a;
+  }
+
+  .section-inner {
+    max-width: 80rem;
+    margin: 0 auto;
+  }
+
+  .partners-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .partners-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* ─── Partner card ───────────────────────────────── */
+  .partner-card {
+    background: #111;
+    border: 1px solid #1e1e1e;
+    border-radius: 6px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    transition: border-color 160ms;
+  }
+
+  .partner-card:hover {
+    border-color: color-mix(in srgb, var(--partner-color) 40%, transparent);
+  }
+
+  .partner-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .partner-name {
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin: 0 0 0.35rem;
+  }
+
+  .partner-category {
+    font-size: 0.6rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: #555;
+    border: 1px solid #222;
+    border-radius: 2px;
+    padding: 0.2rem 0.55rem;
+  }
+
+  .partner-desc {
+    font-size: 0.875rem;
+    color: #888;
+    line-height: 1.7;
+    margin: 0;
+    flex: 1;
+  }
+
+  /* Code box */
+  .partner-code-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    border: 1px solid;
+    border-radius: 4px;
+    padding: 0.75rem 1rem;
+  }
+
+  .code-label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: #666;
+  }
+
+  .code-value {
+    font-size: 1rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+  }
+
+  /* CTA button */
+  .partner-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.65rem 1.25rem;
+    border: 1px solid;
+    border-radius: 3px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    text-decoration: none;
+    transition: background 150ms, color 150ms;
+    margin-top: auto;
+  }
+
+  .partner-cta:hover {
+    background: var(--partner-color);
+    color: #fff !important;
+    border-color: var(--partner-color) !important;
+  }
+
+  /* ─── Bottom CTA ─────────────────────────────────── */
+  .bottom-cta {
+    padding: 5rem 1.5rem;
+    background: #0c0c0c;
+    border-bottom: 1px solid #1a1a1a;
+    text-align: center;
+  }
+
+  .cta-inner {
+    max-width: 42rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .cta-eyebrow {
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: #dc2626;
+  }
+
+  .cta-heading {
+    font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    margin: 0;
+  }
+
+  .cta-sub {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.65;
+    margin: 0;
+    max-width: 32rem;
+  }
+
+  .cta-button {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.8rem 1.75rem;
+    background: #dc2626;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: background 150ms;
+  }
+
+  .cta-button:hover {
+    background: #b91c1c;
+  }
+
+  /* ─── Back link ──────────────────────────────────── */
+  .back-wrap {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #555;
+    text-decoration: none;
+    transition: color 150ms;
+  }
+
+  .back-link:hover {
+    color: #fff;
+  }
+</style>

@@ -1,5 +1,6 @@
 ---
 export interface Props {
+  id: string;
   name: string;
   role: string;
   shows: string[];
@@ -7,7 +8,8 @@ export interface Props {
   accent?: string;
 }
 
-const { name, role, shows, bio, accent = "#dc2626" } = Astro.props;
+const { id, name, role, shows, bio, accent = "#dc2626" } = Astro.props;
+const base = import.meta.env.BASE_URL;
 
 const initials = name
   .split(" ")
@@ -15,40 +17,139 @@ const initials = name
   .slice(0, 2)
   .join("")
   .toUpperCase();
+
+const showLabels: Record<string, string> = {
+  BSG: "Blood Sweat & Gear",
+  DNS: "Drugs N Stuff",
+  IJB: "It's Just Bodybuilding",
+  MM: "Muscle Minds",
+};
 ---
 
-<article
-  class="tb-card rounded-lg p-6 flex flex-col gap-3 border border-[#222] hover:border-[#333]"
+<a
+  href={`${base}hosts/${id}`}
+  class="host-card"
+  style={`--accent:${accent};`}
 >
-  <div class="flex items-center gap-4">
-    <div
-      class="shrink-0 w-14 h-14 rounded-full flex items-center justify-center font-black text-lg text-white border"
-      style={`background: linear-gradient(135deg, ${accent}33, #141414); border-color:${accent}55;`}
-    >
-      {initials}
-    </div>
-    <div class="min-w-0">
-      <h3 class="text-lg font-bold text-white leading-tight truncate">
-        {name}
-      </h3>
-      <p
-        class="tb-label mt-1"
-        style={`color:${accent};`}
-      >
-        {role}
-      </p>
+  <div class="hc-top">
+    <div class="hc-avatar">{initials}</div>
+    <div class="hc-meta">
+      <h3 class="hc-name">{name}</h3>
+      <p class="hc-role">{role}</p>
     </div>
   </div>
 
-  <div class="flex flex-wrap gap-1.5">
-    {
-      shows.map((s) => (
-        <span class="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded bg-[#161616] border border-[#222] text-neutral-400">
-          {s}
-        </span>
-      ))
-    }
+  <div class="hc-shows">
+    {shows.map((s) => (
+      <span class="hc-show-tag" title={showLabels[s] ?? s}>{s}</span>
+    ))}
   </div>
 
-  <p class="text-sm text-neutral-400 leading-relaxed">{bio}</p>
-</article>
+  <p class="hc-bio">{bio}</p>
+
+  <span class="hc-cta">
+    Full Profile
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+  </span>
+</a>
+
+<style>
+  .host-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    padding: 1.5rem;
+    background: #111;
+    border: 1px solid #1e1e1e;
+    border-radius: 6px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 180ms, transform 150ms;
+    cursor: pointer;
+  }
+  .host-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .hc-top {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hc-avatar {
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 25%, #141414), #141414);
+    border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -0.02em;
+  }
+
+  .hc-meta { min-width: 0; }
+  .hc-name {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.2;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .hc-role {
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    margin: 0.2rem 0 0;
+  }
+
+  .hc-shows {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+  .hc-show-tag {
+    font-size: 0.58rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    padding: 0.18rem 0.5rem;
+    border-radius: 2px;
+    background: #1a1a1a;
+    border: 1px solid #252525;
+    color: #555;
+  }
+
+  .hc-bio {
+    font-size: 0.82rem;
+    color: #5a5a5a;
+    line-height: 1.6;
+    margin: 0;
+    flex: 1;
+  }
+
+  .hc-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-top: auto;
+    padding-top: 0.5rem;
+    border-top: 1px solid #1e1e1e;
+  }
+</style>
