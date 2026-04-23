@@ -13,7 +13,7 @@ export const shows = [
     episodeCount: "300+",
     youtubePlaylist: "https://www.youtube.com/@ThinkBIGBodybuilding/playlists",
     youtubeChannel: "https://www.youtube.com/@ThinkBIGBodybuilding",
-    spotifyUrl: "https://open.spotify.com/search/Blood%20Sweat%20Gear%20Think%20BIG/podcasts",
+    spotifyUrl: "https://open.spotify.com/show/0RZgpBPeXPcRLmhG5rDr2X",
     appleUrl:
       "https://podcasts.apple.com/us/podcast/think-big-bodybuilding/id1561623662",
     sampleVideoId: "c5WzQ54wrvA",
@@ -41,7 +41,7 @@ export const shows = [
     episodeCount: "300+",
     youtubePlaylist: "https://www.youtube.com/@ThinkBIGBodybuilding/playlists",
     youtubeChannel: "https://www.youtube.com/@ThinkBIGBodybuilding",
-    spotifyUrl: "https://open.spotify.com/search/Drugs%20N%20Stuff%20Think%20BIG/podcasts",
+    spotifyUrl: "https://open.spotify.com/show/0RZgpBPeXPcRLmhG5rDr2X",
     appleUrl:
       "https://podcasts.apple.com/us/podcast/think-big-bodybuilding/id1561623662",
     sampleVideoId: "ybu_KL-4srQ",
@@ -69,7 +69,7 @@ export const shows = [
     episodeCount: "355+",
     youtubePlaylist: "https://www.youtube.com/@ThinkBIGBodybuilding/playlists",
     youtubeChannel: "https://www.youtube.com/@ThinkBIGBodybuilding",
-    spotifyUrl: "https://open.spotify.com/search/It's%20Just%20Bodybuilding%20Think%20BIG/podcasts",
+    spotifyUrl: "https://open.spotify.com/show/0RZgpBPeXPcRLmhG5rDr2X",
     appleUrl:
       "https://podcasts.apple.com/us/podcast/think-big-bodybuilding/id1561623662",
     sampleVideoId: "N9DydIU06SM",
@@ -97,7 +97,7 @@ export const shows = [
     episodeCount: "175+",
     youtubePlaylist: "https://www.youtube.com/@ThinkBIGBodybuilding/playlists",
     youtubeChannel: "https://www.youtube.com/@ThinkBIGBodybuilding",
-    spotifyUrl: "https://open.spotify.com/search/Muscle%20Minds%20Think%20BIG/podcasts",
+    spotifyUrl: "https://open.spotify.com/show/0RZgpBPeXPcRLmhG5rDr2X",
     appleUrl:
       "https://podcasts.apple.com/us/podcast/think-big-bodybuilding/id1561623662",
     sampleVideoId: "ST4gODHpGPM",
