@@ -36,13 +36,10 @@ const showHosts = allHosts.filter((h) => show.hosts.includes(h.name));
 
 interface Episode {
   title: string;
-  link: string;
-  rawPubDate: string;
-  pubDate: string;
-  duration: string;
-  epNum: string;
   youtubeId: string;
-  youtubeTitle: string;
+  youtubeUrl: string;
+  pubDate: string;
+  epNum: string;
 }
 
 function decodeEntities(s: string) {
@@ -62,76 +59,37 @@ function fmtDate(s: string) {
 }
 
 let recentEpisodes: Episode[] = [];
+let featuredVideoId = show.sampleVideoId;
 
 try {
-  // Fetch per-show YouTube playlist RSS + SoundCloud in parallel
-  const [scRes, ytRes] = await Promise.allSettled([
-    fetch(
-      "https://feeds.soundcloud.com/users/soundcloud:users:690728360/sounds.rss",
-      { signal: AbortSignal.timeout(8000) }
-    ),
-    fetch(
-      `https://www.youtube.com/feeds/videos.xml?playlist_id=${show.youtubePlaylistId}`,
-      { signal: AbortSignal.timeout(6000) }
-    ),
-  ]);
-
-  // Parse YouTube playlist entries — match by publication date
-  interface YTVideo { id: string; title: string; published: Date }
-  let ytVideos: YTVideo[] = [];
-  if (ytRes.status === "fulfilled" && ytRes.value.ok) {
-    const ytXml = await ytRes.value.text();
+  const ytRes = await fetch(
+    `https://www.youtube.com/feeds/videos.xml?playlist_id=${show.youtubePlaylistId}`,
+    { signal: AbortSignal.timeout(8000) }
+  );
+  if (ytRes.ok) {
+    const ytXml = await ytRes.text();
     const entries = [...ytXml.matchAll(/<entry>([\s\S]*?)<\/entry>/g)].map((m) => m[1]);
-    ytVideos = entries
+    const videos = entries
       .map((e) => ({
         id: e.match(/<yt:videoId>(.*?)<\/yt:videoId>/)?.[1]?.trim() ?? "",
         title: decodeEntities(e.match(/<title>([\s\S]*?)<\/title>/)?.[1] ?? ""),
-        published: new Date(e.match(/<published>(.*?)<\/published>/)?.[1]?.trim() ?? ""),
+        published: e.match(/<published>(.*?)<\/published>/)?.[1]?.trim() ?? "",
       }))
-      .filter((v) => v.id && !isNaN(v.published.getTime()));
-  }
+      .filter((v) => v.id);
 
-  // Parse SoundCloud episodes
-  if (scRes.status === "fulfilled" && scRes.value.ok) {
-    const xml = await scRes.value.text();
-    const items = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].map((m) => m[1]);
+    if (videos.length > 0) {
+      featuredVideoId = videos[0].id;
+    }
 
-    const scEps = items
-      .map((item) => {
-        const rawTitle = decodeEntities(
-          item.match(/<title>(?:<!\[CDATA\[)?([\s\S]*?)(?:\]\]>)?<\/title>/)?.[1] ?? ""
-        );
-        const link = item.match(/<link>(.*?)<\/link>/)?.[1]?.trim() ?? "";
-        const rawPubDate = item.match(/<pubDate>(.*?)<\/pubDate>/)?.[1]?.trim() ?? "";
-        const pubDate = fmtDate(rawPubDate);
-        const duration = item.match(/<itunes:duration>(.*?)<\/itunes:duration>/)?.[1]?.trim() ?? "";
-        const numMatch = rawTitle.match(/\b(\d{2,4})\b/);
-        const epNum = numMatch ? numMatch[1] : "";
-        return { title: rawTitle, link, rawPubDate, pubDate, duration, epNum };
-      })
-      .filter((ep) => ep.title.toLowerCase().includes(show.rssKeyword.toLowerCase()))
-      .slice(0, 10);
-
-    const THREE_DAYS = 3 * 24 * 60 * 60 * 1000;
-
-    recentEpisodes = scEps.map((ep) => {
-      const scDate = new Date(ep.rawPubDate);
-      let youtubeId = "";
-      let youtubeTitle = "";
-
-      if (!isNaN(scDate.getTime()) && ytVideos.length > 0) {
-        // Find the YouTube video published closest in time to this episode
-        const best = ytVideos
-          .map((v) => ({ v, diff: Math.abs(scDate.getTime() - v.published.getTime()) }))
-          .sort((a, b) => a.diff - b.diff)[0];
-
-        if (best && best.diff < THREE_DAYS) {
-          youtubeId = best.v.id;
-          youtubeTitle = best.v.title;
-        }
-      }
-
-      return { ...ep, youtubeId, youtubeTitle };
+    recentEpisodes = videos.slice(0, 12).map((v) => {
+      const numMatch = v.title.match(/\b(\d{2,4})\b/);
+      return {
+        title: v.title,
+        youtubeId: v.id,
+        youtubeUrl: `https://www.youtube.com/watch?v=${v.id}`,
+        pubDate: fmtDate(v.published),
+        epNum: numMatch ? numMatch[1] : "",
+      };
     });
   }
 } catch {
@@ -262,7 +220,7 @@ try {
       <div>
         <span class="tb-label" style={`color:${show.color};`}>Featured</span>
         <h2 class="mt-1 text-lg font-black text-white tracking-tight">
-          Latest Episode
+          Latest on YouTube
         </h2>
       </div>
       <a
@@ -281,7 +239,7 @@ try {
     </div>
     <div style="max-width:22rem;">
       <YouTubeEmbed
-        videoId={show.sampleVideoId}
+        videoId={featuredVideoId}
         title={`${show.name} — Latest Episode`}
       />
     </div>
@@ -313,37 +271,31 @@ try {
       <div class="ep-list">
         {recentEpisodes.map((ep) => (
           <div class="ep-row" style={`--c:${show.color};`}>
-            {/* Thumbnail — links to YouTube if matched */}
-            {ep.youtubeId ? (
-              <a
-                href={`https://www.youtube.com/watch?v=${ep.youtubeId}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="ep-thumb"
-                title={ep.youtubeTitle || "Watch on YouTube"}
-              >
-                <img
-                  src={`https://i.ytimg.com/vi/${ep.youtubeId}/mqdefault.jpg`}
-                  alt=""
-                  loading="lazy"
-                  class="ep-thumb-img"
-                />
-                <span class="ep-yt-badge" aria-hidden="true">
-                  <svg width="28" height="20" viewBox="0 0 68 48" fill="none">
-                    <path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79 0 34 0 34 0S12.21 0 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C0 13.05 0 24 0 24s0 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 48 34 48 34 48s21.79 0 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C68 34.95 68 24 68 24s0-10.95-1.48-16.26z" fill="#FF0000"/>
-                    <path d="M45 24 27 14v20l18-10z" fill="white"/>
-                  </svg>
-                </span>
-              </a>
-            ) : (
-              <div class="ep-thumb ep-thumb-empty" style={`background:${show.color}12;`} aria-hidden="true">
-                <span class="ep-thumb-icon">{show.icon}</span>
-              </div>
-            )}
-
-            {/* Info — links to SoundCloud episode */}
+            {/* Thumbnail — links to YouTube */}
             <a
-              href={ep.link}
+              href={ep.youtubeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="ep-thumb"
+              title="Watch on YouTube"
+            >
+              <img
+                src={`https://i.ytimg.com/vi/${ep.youtubeId}/mqdefault.jpg`}
+                alt=""
+                loading="lazy"
+                class="ep-thumb-img"
+              />
+              <span class="ep-yt-badge" aria-hidden="true">
+                <svg width="28" height="20" viewBox="0 0 68 48" fill="none">
+                  <path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79 0 34 0 34 0S12.21 0 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C0 13.05 0 24 0 24s0 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 48 34 48 34 48s21.79 0 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C68 34.95 68 24 68 24s0-10.95-1.48-16.26z" fill="#FF0000"/>
+                  <path d="M45 24 27 14v20l18-10z" fill="white"/>
+                </svg>
+              </span>
+            </a>
+
+            {/* Info — links to YouTube */}
+            <a
+              href={ep.youtubeUrl}
               target="_blank"
               rel="noopener noreferrer"
               class="ep-info"
@@ -351,7 +303,6 @@ try {
               <span class="ep-title">{ep.title}</span>
               <span class="ep-meta">
                 {ep.epNum && <span class="ep-num">#{ep.epNum}</span>}
-                {ep.duration && <span class="ep-dur">{ep.duration}</span>}
                 {ep.pubDate && <span class="ep-date">{ep.pubDate}</span>}
               </span>
             </a>
