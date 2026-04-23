@@ -19,10 +19,11 @@ export interface Props {
 }
 
 const { show, index = 0 } = Astro.props;
+const base = import.meta.env.BASE_URL;
 ---
 
 <a
-  href={`/${show.slug}`}
+  href={`${base}${show.slug}`}
   class="show-panel group"
   style={`--c:${show.color};`}
 >

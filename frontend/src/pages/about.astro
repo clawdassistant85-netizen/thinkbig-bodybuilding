@@ -89,7 +89,7 @@ function accentFor(showCodes) {
         {
           shows.map((show) => (
             <a
-              href={`/${show.slug}`}
+              href={`${import.meta.env.BASE_URL}${show.slug}`}
               class="tb-card rounded-lg p-6 border-l-4 flex items-start gap-4 group"
               style={`border-left-color:${show.color};`}
             >
