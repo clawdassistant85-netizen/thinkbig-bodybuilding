@@ -23,7 +23,7 @@ const { show, index = 0 } = Astro.props;
 
 <a
   href={`/${show.slug}`}
-  class="show-panel group block relative overflow-hidden"
+  class="show-panel group"
   style={`--c:${show.color};`}
 >
   <!-- Left color stripe -->
@@ -31,60 +31,41 @@ const { show, index = 0 } = Astro.props;
     <span class="show-abbr">{show.shortName}</span>
   </div>
 
-  <!-- Content -->
-  <div class="show-body">
-    <!-- Top: name + count -->
-    <div class="show-top">
-      <div>
-        <h3 class="show-name group-hover:underline" style={`text-decoration-color:${show.color};`}>
-          {show.name}
-        </h3>
-        <p class="show-tagline" style={`color:${show.color};`}>{show.tagline}</p>
-      </div>
-      <span class="show-count" style={`color:${show.color}; border-color:${show.color}44; background:${show.color}14;`}>
-        {show.episodeCount}&thinsp;eps
-      </span>
+  <!-- Main content -->
+  <div class="show-main">
+    <!-- Left: name + tagline -->
+    <div class="show-left">
+      <h3 class="show-name">{show.name}</h3>
+      <p class="show-tagline" style={`color:${show.color};`}>{show.tagline}</p>
     </div>
 
-    <!-- Description -->
-    <p class="show-desc">{show.description}</p>
-
-    <!-- Bottom: hosts + CTAs -->
-    <div class="show-bottom">
-      <p class="show-hosts">
-        {show.hosts.join(' · ')}
-      </p>
-      <div class="show-actions" onclick="event.preventDefault(); event.stopPropagation();">
-        <a
-          href={show.spotifyUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Listen on Spotify"
-          class="show-btn-icon"
-          title="Spotify"
-        >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-        </a>
-        <a
-          href={show.appleUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Listen on Apple Podcasts"
-          class="show-btn-icon"
-          title="Apple Podcasts"
-        >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 4.1c3.2 0 5.8 2.6 5.8 5.8 0 2.2-1.2 4.1-3 5.1v1c0 .8-.6 1.5-1.4 1.6l-.1.1c-.4 1-1.4 1.7-2.6 1.7-1.3 0-2.3-.8-2.7-1.9-.7-.2-1.2-.9-1.2-1.6v-.9c-1.8-1-3-2.9-3-5.1 0-3.2 2.6-5.8 5.8-5.8h2.4zM12 6c-2.2 0-4 1.8-4 4 0 1.5.9 2.9 2.2 3.5v-1.1c0-.5.4-.9.9-.9h1.7c.5 0 .9.4.9.9v1.1c1.3-.6 2.2-2 2.2-3.5 0-2.2-1.8-4-3.9-4z"/></svg>
-        </a>
-        <span class="show-cta" style={`background:${show.color};`}>
-          Listen
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    <!-- Right: badge + description + hosts + ctas -->
+    <div class="show-right">
+      <div class="show-right-top">
+        <span class="show-count" style={`color:${show.color}; border-color:${show.color}44; background:${show.color}14;`}>
+          {show.episodeCount}&thinsp;eps
         </span>
+      </div>
+      <p class="show-desc">{show.description}</p>
+      <div class="show-bottom">
+        <p class="show-hosts">{show.hosts.join(' · ')}</p>
+        <div class="show-actions" onclick="event.preventDefault(); event.stopPropagation();">
+          <a href={show.spotifyUrl} target="_blank" rel="noopener noreferrer" class="show-btn-icon" title="Spotify">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+          </a>
+          <a href={show.appleUrl} target="_blank" rel="noopener noreferrer" class="show-btn-icon" title="Apple Podcasts">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 4.1c3.2 0 5.8 2.6 5.8 5.8 0 2.2-1.2 4.1-3 5.1v1c0 .8-.6 1.5-1.4 1.6l-.1.1c-.4 1-1.4 1.7-2.6 1.7-1.3 0-2.3-.8-2.7-1.9-.7-.2-1.2-.9-1.2-1.6v-.9c-1.8-1-3-2.9-3-5.1 0-3.2 2.6-5.8 5.8-5.8h2.4zM12 6c-2.2 0-4 1.8-4 4 0 1.5.9 2.9 2.2 3.5v-1.1c0-.5.4-.9.9-.9h1.7c.5 0 .9.4.9.9v1.1c1.3-.6 2.2-2 2.2-3.5 0-2.2-1.8-4-3.9-4z"/></svg>
+          </a>
+          <span class="show-cta" style={`background:${show.color};`}>
+            Listen
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Hover glow -->
-  <div class="show-glow" style={`background: linear-gradient(90deg, ${show.color}1a 0%, transparent 50%);`} aria-hidden="true"></div>
+  <div class="show-glow" style={`background: linear-gradient(90deg, ${show.color}1a 0%, transparent 60%);`} aria-hidden="true"></div>
 </a>
 
 <style>
@@ -92,97 +73,120 @@ const { show, index = 0 } = Astro.props;
     display: flex;
     background: #111;
     border: 1px solid #1f1f1f;
-    transition: border-color 200ms, transform 150ms;
     text-decoration: none;
     color: inherit;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 200ms, transform 150ms;
   }
   .show-panel:hover {
     border-color: var(--c);
-    transform: translateX(2px);
+    transform: translateX(3px);
   }
 
   .show-stripe {
     flex-shrink: 0;
-    width: 56px;
+    width: 52px;
     background: var(--c);
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    overflow: hidden;
   }
+  @media (min-width: 640px) { .show-stripe { width: 64px; } }
+
   .show-abbr {
-    font-size: 0.6rem;
+    font-size: 0.55rem;
     font-weight: 900;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: rgba(0,0,0,0.55);
+    color: rgba(0,0,0,0.5);
     writing-mode: vertical-rl;
     transform: rotate(180deg);
     user-select: none;
   }
+  @media (min-width: 640px) { .show-abbr { font-size: 0.6rem; } }
 
-  .show-body {
+  /* Two-column layout: left (name) | right (everything else) */
+  .show-main {
     flex: 1;
-    padding: 1.25rem 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-    position: relative;
-    z-index: 1;
     min-width: 0;
+    display: flex;
+    align-items: stretch;
   }
 
-  .show-top {
+  .show-left {
+    flex-shrink: 0;
+    width: 240px;
+    padding: 1.25rem 1.5rem 1.25rem 1.5rem;
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1rem;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-right: 1px solid #1a1a1a;
+  }
+  @media (min-width: 768px) { .show-left { width: 280px; } }
+  @media (min-width: 1024px) { .show-left { width: 320px; } }
+  @media (max-width: 640px) {
+    .show-main { flex-direction: column; }
+    .show-left {
+      width: 100%;
+      border-right: none;
+      border-bottom: 1px solid #1a1a1a;
+      padding-bottom: 0.75rem;
+    }
   }
 
   .show-name {
-    font-size: 1.35rem;
+    font-size: 1.4rem;
     font-weight: 900;
     color: #fff;
-    letter-spacing: -0.02em;
-    line-height: 1.15;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
     margin: 0;
   }
-  @media (min-width: 640px) {
-    .show-name { font-size: 1.6rem; }
-    .show-stripe { width: 68px; }
-    .show-abbr { font-size: 0.65rem; }
-  }
+  @media (min-width: 768px) { .show-name { font-size: 1.65rem; } }
+  @media (min-width: 1024px) { .show-name { font-size: 1.9rem; } }
 
   .show-tagline {
-    font-size: 0.7rem;
+    font-size: 0.62rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.18em;
-    margin-top: 0.25rem;
+    margin-top: 0.4rem;
+  }
+
+  .show-right {
+    flex: 1;
+    min-width: 0;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .show-right-top {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
   }
 
   .show-count {
-    flex-shrink: 0;
-    font-size: 0.65rem;
+    display: inline-block;
+    font-size: 0.6rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    padding: 0.25rem 0.6rem;
+    padding: 0.2rem 0.55rem;
     border-radius: 3px;
     border: 1px solid;
     white-space: nowrap;
   }
 
   .show-desc {
-    font-size: 0.82rem;
-    color: #888;
-    line-height: 1.55;
+    font-size: 0.85rem;
+    color: #777;
+    line-height: 1.6;
     margin: 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    flex: 1;
   }
 
   .show-bottom {
@@ -191,13 +195,15 @@ const { show, index = 0 } = Astro.props;
     justify-content: space-between;
     gap: 1rem;
     flex-wrap: wrap;
-    margin-top: 0.2rem;
+    margin-top: auto;
+    padding-top: 0.5rem;
+    border-top: 1px solid #1a1a1a;
   }
 
   .show-hosts {
-    font-size: 0.72rem;
+    font-size: 0.67rem;
     font-weight: 600;
-    color: #555;
+    color: #444;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     margin: 0;
@@ -206,7 +212,7 @@ const { show, index = 0 } = Astro.props;
   .show-actions {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.4rem;
     flex-shrink: 0;
   }
 
@@ -214,26 +220,23 @@ const { show, index = 0 } = Astro.props;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 30px;
-    height: 30px;
-    border-radius: 4px;
-    border: 1px solid #2a2a2a;
-    color: #555;
+    width: 28px;
+    height: 28px;
+    border-radius: 3px;
+    border: 1px solid #252525;
+    color: #444;
     text-decoration: none;
     transition: color 150ms, border-color 150ms;
   }
-  .show-btn-icon:hover {
-    color: #fff;
-    border-color: #444;
-  }
+  .show-btn-icon:hover { color: #aaa; border-color: #444; }
 
   .show-cta {
     display: inline-flex;
     align-items: center;
     gap: 0.3rem;
-    padding: 0.35rem 0.8rem;
+    padding: 0.35rem 0.75rem;
     border-radius: 3px;
-    font-size: 0.65rem;
+    font-size: 0.62rem;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.15em;
@@ -246,11 +249,8 @@ const { show, index = 0 } = Astro.props;
     position: absolute;
     inset: 0;
     opacity: 0;
-    transition: opacity 200ms;
     pointer-events: none;
-    z-index: 0;
+    transition: opacity 200ms;
   }
-  .show-panel:hover .show-glow {
-    opacity: 1;
-  }
+  .show-panel:hover .show-glow { opacity: 1; }
 </style>
