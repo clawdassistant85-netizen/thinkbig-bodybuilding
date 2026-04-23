@@ -135,27 +135,17 @@ function accentFor(showCodes) {
             <p class="show-feat-desc">{show.description}</p>
 
             <div class="show-feat-topics">
-              {show.topics.slice(0, 4).map((t) => (
+              {show.topics.map((t) => (
                 <span class="show-feat-topic">{t}</span>
               ))}
             </div>
 
             <div class="show-feat-foot">
               <p class="show-feat-hosts">{show.hosts.join(' · ')}</p>
-              <div class="show-feat-actions">
-                <a href={show.spotifyUrl} target="_blank" rel="noopener noreferrer"
-                   class="show-icon-btn" title="Listen on Spotify">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-                </a>
-                <a href={show.appleUrl} target="_blank" rel="noopener noreferrer"
-                   class="show-icon-btn" title="Apple Podcasts">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.182c5.415 0 9.818 4.403 9.818 9.818S17.415 21.818 12 21.818 2.182 17.415 2.182 12 6.585 2.182 12 2.182zm0 2.545c-4.017 0-7.273 3.256-7.273 7.273S7.983 19.273 12 19.273s7.273-3.256 7.273-7.273S16.017 4.727 12 4.727zm0 1.637c3.108 0 5.636 2.528 5.636 5.636S15.108 17.636 12 17.636 6.364 15.108 6.364 12 8.892 6.364 12 6.364zm0 2.727c-.602 0-1.09.489-1.09 1.09v4.365c0 .602.488 1.09 1.09 1.09s1.09-.488 1.09-1.09v-4.364c0-.602-.488-1.091-1.09-1.091zm0-2.182c-.752 0-1.364.612-1.364 1.364S11.248 9.818 12 9.818s1.364-.612 1.364-1.364S12.752 6.909 12 6.909z"/></svg>
-                </a>
-                <a href={`${base}${show.slug}`} class="show-cta-btn">
-                  Full Show
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                </a>
-              </div>
+              <a href={`${base}${show.slug}`} class="show-cta-btn">
+                Full Show
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
             </div>
           </div>
         </div>
@@ -528,27 +518,27 @@ function accentFor(showCodes) {
 
   /* Body */
   .show-body {
-    padding: 1.5rem;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.25rem;
     flex: 1;
   }
-  .show-body-top { display: flex; flex-direction: column; gap: 0.3rem; }
+  .show-body-top { display: flex; flex-direction: column; gap: 0.4rem; }
 
   .show-feat-name {
-    font-size: 1.3rem;
+    font-size: 1.6rem;
     font-weight: 900;
     color: #fff;
-    letter-spacing: -0.02em;
-    line-height: 1.15;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
     margin: 0;
     transition: color 160ms;
   }
   .show-feat:hover .show-feat-name { color: var(--c); }
 
   .show-feat-tagline {
-    font-size: 0.62rem;
+    font-size: 0.65rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.2em;
@@ -558,14 +548,10 @@ function accentFor(showCodes) {
   }
 
   .show-feat-desc {
-    font-size: 0.83rem;
-    color: #5a5a5a;
-    line-height: 1.65;
+    font-size: 0.875rem;
+    color: #666;
+    line-height: 1.7;
     margin: 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
   }
 
   .show-feat-topics {
@@ -591,12 +577,12 @@ function accentFor(showCodes) {
     justify-content: space-between;
     gap: 0.75rem;
     flex-wrap: wrap;
-    padding-top: 1rem;
+    padding-top: 1.25rem;
     border-top: 1px solid #1e1e1e;
     margin-top: auto;
   }
   .show-feat-hosts {
-    font-size: 0.6rem;
+    font-size: 0.62rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -605,24 +591,6 @@ function accentFor(showCodes) {
     flex: 1;
     min-width: 0;
   }
-  .show-feat-actions {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    flex-shrink: 0;
-  }
-  .show-icon-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 28px; height: 28px;
-    border-radius: 3px;
-    border: 1px solid #222;
-    color: #3a3a3a;
-    text-decoration: none;
-    transition: color 140ms, border-color 140ms;
-  }
-  .show-icon-btn:hover { color: #888; border-color: #444; }
   .show-cta-btn {
     display: inline-flex;
     align-items: center;
