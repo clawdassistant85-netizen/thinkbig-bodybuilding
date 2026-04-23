@@ -135,6 +135,30 @@ function accentFor(showCodes) {
   <!-- ─── SPONSORS ──────────────────────────────────────── -->
   <SponsorBar />
 
+  <!-- ─── COMMUNITY CTA ──────────────────────────────────── -->
+  <section class="community-section">
+    <div class="section-wrap">
+      <div class="community-grid">
+        <a href={social.patreon} target="_blank" rel="noopener noreferrer" class="community-card community-patreon">
+          <div class="community-card-inner">
+            <span class="community-eyebrow">Support The Network</span>
+            <h3 class="community-title">Join The Patreon</h3>
+            <p class="community-sub">Exclusive episodes, direct Q&amp;A with the hosts, and early access. The show exists because of Patreon members.</p>
+            <span class="community-cta">Become a Patron →</span>
+          </div>
+        </a>
+        <a href={social.facebook} target="_blank" rel="noopener noreferrer" class="community-card community-facebook">
+          <div class="community-card-inner">
+            <span class="community-eyebrow">Join The Conversation</span>
+            <h3 class="community-title">Facebook Community</h3>
+            <p class="community-sub">Thousands of serious lifters, coaches, and competitors. Ask questions, share progress, and dig into the details between episodes.</p>
+            <span class="community-cta">Join The Group →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- ─── LISTEN EVERYWHERE ────────────────────────────── -->
   <section class="listen-section">
     <div class="section-wrap">
@@ -145,13 +169,14 @@ function accentFor(showCodes) {
       </div>
       <div class="platforms-grid">
         {[
-          { name: "Spotify", url: social.spotify, color: "#1DB954" },
-          { name: "Apple Podcasts", url: social.apple, color: "#a66cff" },
-          { name: "YouTube", url: social.youtube, color: "#dc2626" },
-          { name: "SoundCloud", url: social.soundcloud, color: "#ff7700" },
+          { name: "Spotify", url: social.spotify, color: "#1DB954", icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>` },
+          { name: "Apple Podcasts", url: social.apple, color: "#a66cff", icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.182c5.415 0 9.818 4.403 9.818 9.818S17.415 21.818 12 21.818 2.182 17.415 2.182 12 6.585 2.182 12 2.182zm0 2.545c-4.017 0-7.273 3.256-7.273 7.273S7.983 19.273 12 19.273s7.273-3.256 7.273-7.273S16.017 4.727 12 4.727zm0 1.637c3.108 0 5.636 2.528 5.636 5.636S15.108 17.636 12 17.636 6.364 15.108 6.364 12 8.892 6.364 12 6.364zm0 2.727c-.602 0-1.09.489-1.09 1.09v4.365c0 .602.488 1.09 1.09 1.09s1.09-.488 1.09-1.09v-4.364c0-.602-.488-1.091-1.09-1.091zm0-2.182c-.752 0-1.364.612-1.364 1.364S11.248 9.818 12 9.818s1.364-.612 1.364-1.364S12.752 6.909 12 6.909z"/></svg>` },
+          { name: "YouTube", url: social.youtube, color: "#dc2626", icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a2.99 2.99 0 0 0-2.107-2.117C19.455 3.55 12 3.55 12 3.55s-7.455 0-9.391.519A2.99 2.99 0 0 0 .502 6.186C0 8.132 0 12 0 12s0 3.868.502 5.814a2.99 2.99 0 0 0 2.107 2.117c1.936.519 9.391.519 9.391.519s7.455 0 9.391-.519a2.99 2.99 0 0 0 2.107-2.117C24 15.868 24 12 24 12s0-3.868-.502-5.814zM9.546 15.568V8.432L15.818 12l-6.272 3.568z"/></svg>` },
+          { name: "SoundCloud", url: social.soundcloud, color: "#ff7700", icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M11.56 8.87V17h8.76c1.56-.01 2.68-1.29 2.68-2.56 0-1.29-1.04-2.32-2.38-2.45.24-.49.38-1.02.38-1.58 0-2.04-1.65-3.69-3.7-3.69-1.06 0-2.02.44-2.71 1.15-.35-.56-.95-.93-1.7-.93-.98 0-1.53.73-1.53 1.73v1.23zm-1.63 8.13H2.18C1.08 17 0 15.96 0 14.87c0-1.09.83-2.12 2.12-2.29C2.08 12.27 2 11.94 2 11.6c0-1.52 1.27-2.75 2.85-2.75.71 0 1.36.26 1.85.69.36-.42.9-.69 1.5-.69.92 0 1.65.61 1.82 1.42.22-.06.45-.09.68-.09 1.53 0 2.76 1.23 2.76 2.76 0 .39-.08.76-.23 1.1.78.21 1.35.93 1.35 1.79 0 1.02-.82 1.84-1.84 1.84-.07 0-.13-.01-.18-.01z"/></svg>` },
         ].map((p) => (
           <a href={p.url} target="_blank" rel="noopener noreferrer"
             class="platform-card" style={`--accent:${p.color};`}>
+            <span class="platform-icon" style={`color:${p.color};`} set:html={p.icon} />
             <span class="platform-name">{p.name}</span>
             <span class="platform-cta">Listen Now →</span>
           </a>
@@ -250,6 +275,11 @@ function accentFor(showCodes) {
     background: #dc2626;
     box-shadow: 0 0 8px #dc2626;
     flex-shrink: 0;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { box-shadow: 0 0 4px #dc2626; opacity: 1; }
+    50% { box-shadow: 0 0 14px #dc2626, 0 0 22px #dc262655; opacity: 0.75; }
   }
   .hero-h1 {
     font-size: clamp(2rem, 5vw, 3.8rem);
@@ -371,6 +401,74 @@ function accentFor(showCodes) {
     gap: 1rem;
   }
 
+  /* ── COMMUNITY ──────────────────────────────────────── */
+  .community-section {
+    padding: 4.5rem 0;
+    background: #0c0c0c;
+    border-top: 1px solid #1a1a1a;
+  }
+  .community-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  @media (min-width: 640px) {
+    .community-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .community-card {
+    display: block;
+    text-decoration: none;
+    border-radius: 6px;
+    border: 1px solid #1e1e1e;
+    overflow: hidden;
+    transition: transform 160ms, border-color 160ms;
+  }
+  .community-card:hover { transform: translateY(-2px); }
+  .community-patreon { background: linear-gradient(135deg, #f96854 0%, #0a0a0a 55%); border-color: #f9685430; }
+  .community-patreon:hover { border-color: #f96854; }
+  .community-facebook { background: linear-gradient(135deg, #1877f220 0%, #0a0a0a 55%); border-color: #1877f230; }
+  .community-facebook:hover { border-color: #1877f2; }
+  .community-card-inner {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    background: rgba(10,10,10,0.6);
+    height: 100%;
+  }
+  .community-eyebrow {
+    font-size: 0.6rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: #555;
+  }
+  .community-title {
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    margin: 0;
+  }
+  .community-sub {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.65;
+    margin: 0.25rem 0 0.5rem;
+    flex: 1;
+  }
+  .community-cta {
+    font-size: 0.68rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #dc2626;
+    margin-top: auto;
+  }
+  .community-patreon .community-cta { color: #f96854; }
+  .community-facebook .community-cta { color: #1877f2; }
+
   /* ── LISTEN ─────────────────────────────────────────── */
   .listen-section {
     padding: 4.5rem 0;
@@ -391,13 +489,15 @@ function accentFor(showCodes) {
   }
   .platform-card {
     display: flex; flex-direction: column;
-    align-items: center; justify-content: center; gap: 0.4rem;
+    align-items: center; justify-content: center; gap: 0.5rem;
     padding: 1.75rem 1rem;
     background: #111; border: 1px solid #1f1f1f;
     border-radius: 4px; text-decoration: none;
     transition: border-color 150ms, transform 150ms;
   }
   .platform-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .platform-icon { display: flex; opacity: 0.7; transition: opacity 150ms; }
+  .platform-card:hover .platform-icon { opacity: 1; }
   .platform-name {
     font-size: 0.88rem; font-weight: 800; color: #fff;
     transition: color 150ms;

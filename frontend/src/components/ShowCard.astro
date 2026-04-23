@@ -35,6 +35,12 @@ const base = import.meta.env.BASE_URL;
     <p class="sc-tagline" style={`color:${show.color};`}>{show.tagline}</p>
     <p class="sc-desc">{show.description}</p>
 
+    <div class="sc-topics">
+      {show.topics.slice(0, 4).map((t) => (
+        <span class="sc-topic" style={`border-color:${show.color}30; color:${show.color}cc;`}>{t}</span>
+      ))}
+    </div>
+
     <div class="sc-foot">
       <p class="sc-hosts">{show.hosts.join(' · ')}</p>
       <div class="sc-actions" onclick="event.preventDefault(); event.stopPropagation();">
@@ -184,6 +190,23 @@ const base = import.meta.env.BASE_URL;
     color: #fff;
     pointer-events: none;
     white-space: nowrap;
+  }
+
+  .sc-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0 0 1.1rem;
+  }
+  .sc-topic {
+    font-size: 0.56rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.13em;
+    padding: 0.18rem 0.5rem;
+    border: 1px solid;
+    border-radius: 2px;
+    background: transparent;
   }
 
   .sc-glow {

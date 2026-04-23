@@ -1,0 +1,168 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { shows } from "../data/shows.js";
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout
+  title="404 — Page Not Found | Think BIG Bodybuilding"
+  description="This page doesn't exist. But 1,000+ episodes of bodybuilding content do."
+>
+  <section class="page-404">
+    <div class="glow" aria-hidden="true"></div>
+    <div class="inner">
+      <p class="num">404</p>
+      <h1 class="heading">Wrong Turn, Champ.</h1>
+      <p class="sub">
+        This page doesn't exist — but 1,000+ episodes of real bodybuilding content do.
+      </p>
+
+      <a href={base} class="home-btn">← Back to Home</a>
+
+      <div class="shows-row">
+        <p class="shows-label">Or jump to a show</p>
+        <div class="shows-grid">
+          {shows.map((show) => (
+            <a
+              href={`${base}${show.slug}`}
+              class="show-chip"
+              style={`--c:${show.color};`}
+            >
+              <span class="chip-stripe" style={`background:${show.color};`}></span>
+              <span class="chip-name">{show.name}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-404 {
+    position: relative;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 4rem 1.5rem;
+  }
+
+  .glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(220,38,38,0.12), transparent 70%);
+    pointer-events: none;
+  }
+
+  .inner {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 36rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .num {
+    font-size: clamp(6rem, 20vw, 12rem);
+    font-weight: 900;
+    letter-spacing: -0.06em;
+    line-height: 1;
+    color: rgba(220,38,38,0.15);
+    margin: 0;
+    user-select: none;
+  }
+
+  .heading {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin: -2rem 0 0;
+  }
+
+  .sub {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.65;
+    margin: 0;
+    max-width: 28rem;
+  }
+
+  .home-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.6rem;
+    background: #dc2626;
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    border-radius: 3px;
+    text-decoration: none;
+    margin-top: 0.5rem;
+    transition: background 150ms;
+  }
+  .home-btn:hover { background: #b91c1c; }
+
+  .shows-row {
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .shows-label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #444;
+    margin: 0;
+  }
+
+  .shows-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: center;
+  }
+
+  .show-chip {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: #111;
+    border: 1px solid #1e1e1e;
+    border-radius: 3px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: border-color 150ms;
+  }
+  .show-chip:hover { border-color: var(--c); }
+
+  .chip-stripe {
+    display: block;
+    width: 3px;
+    align-self: stretch;
+    flex-shrink: 0;
+  }
+
+  .chip-name {
+    padding: 0.45rem 0.85rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #ccc;
+    white-space: nowrap;
+  }
+</style>

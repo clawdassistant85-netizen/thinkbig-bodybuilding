@@ -67,5 +67,52 @@ const canonical =
       <slot />
     </main>
     <Footer />
+
+    <!-- Scroll to top -->
+    <button id="scroll-top" aria-label="Back to top" title="Back to top">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+      </svg>
+    </button>
+
+    <style>
+      #scroll-top {
+        position: fixed;
+        bottom: 1.5rem;
+        right: 1.5rem;
+        z-index: 99;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #1a1a1a;
+        border: 1px solid #2e2e2e;
+        color: #666;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(8px);
+        transition: opacity 200ms, transform 200ms, color 150ms, border-color 150ms;
+      }
+      #scroll-top.visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+      #scroll-top:hover {
+        color: #dc2626;
+        border-color: #dc2626;
+      }
+    </style>
+
+    <script>
+      const btn = document.getElementById('scroll-top');
+      window.addEventListener('scroll', () => {
+        btn?.classList.toggle('visible', window.scrollY > 400);
+      }, { passive: true });
+      btn?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    </script>
   </body>
 </html>

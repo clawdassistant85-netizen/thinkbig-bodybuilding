@@ -2,6 +2,12 @@
 import { shows } from "../data/shows.js";
 import { social } from "../data/social.js";
 const base = import.meta.env.BASE_URL;
+const pathname = Astro.url.pathname;
+function isActive(href: string) {
+  const normalized = href.replace(/\/$/, "") || "/";
+  const current = pathname.replace(/\/$/, "") || "/";
+  return current === normalized || (normalized !== base.replace(/\/$/, "") && current.startsWith(normalized));
+}
 ---
 
 <header
@@ -29,8 +35,8 @@ const base = import.meta.env.BASE_URL;
           shows.map((show) => (
             <a
               href={`${base}${show.slug}`}
-              class="text-sm font-semibold text-neutral-300 transition-colors hover:text-white"
-              style={`--show-color:${show.color};`}
+              class={`text-sm font-semibold transition-colors hover:text-white ${isActive(`${base}${show.slug}`) ? "text-white" : "text-neutral-400"}`}
+              style={isActive(`${base}${show.slug}`) ? `color:${show.color};` : `--show-color:${show.color};`}
               data-show={show.slug}
             >
               {show.name}
@@ -39,13 +45,13 @@ const base = import.meta.env.BASE_URL;
         }
         <a
           href={`${base}about`}
-          class="text-sm font-semibold text-neutral-300 hover:text-white transition-colors"
+          class={`text-sm font-semibold transition-colors hover:text-white ${isActive(`${base}about`) ? "text-white" : "text-neutral-400"}`}
         >
           About
         </a>
         <a
           href={`${base}partners`}
-          class="text-sm font-semibold text-neutral-300 hover:text-white transition-colors"
+          class={`text-sm font-semibold transition-colors hover:text-white ${isActive(`${base}partners`) ? "text-[#d97706]" : "text-neutral-400"}`}
         >
           Partners
         </a>
