@@ -6,7 +6,8 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://thinkbigbodybuilding.com",
+  site: "https://clawdassistant85-netizen.github.io",
+  base: "/thinkbig-bodybuilding",
   integrations: [react(), sitemap()],
   vite: {
     plugins: [tailwindcss()],
