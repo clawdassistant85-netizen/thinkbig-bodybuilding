@@ -4,7 +4,7 @@ export const social = {
   instagram: "https://www.instagram.com/thinkbigbodybuilding/",
   twitter: "https://twitter.com/ThinkBigBB",
   facebook: "https://www.facebook.com/groups/thinkbigbodybuilding/",
-  spotify: "https://open.spotify.com/show/0RZgpBPeXPcRLmhG5rDr2X",
+  spotify: "https://open.spotify.com/show/6hxbjjh61JqjUom6iSsZbC",
   apple:
     "https://podcasts.apple.com/us/podcast/think-big-bodybuilding/id1561623662",
   patreon: "https://www.patreon.com/thinkbigbodybuilding",

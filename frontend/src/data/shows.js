@@ -14,7 +14,7 @@ export const shows = [
     youtubePlaylist: "https://www.youtube.com/@ThinkBIGBodybuilding/playlists",
     youtubeChannel: "https://www.youtube.com/@ThinkBIGBodybuilding",
     youtubePlaylistId: "PLhB9QHZc60ah1sekC61ijd-GaiGaeRw_i",
-    spotifyUrl: "https://open.spotify.com/show/0RZgpBPeXPcRLmhG5rDr2X",
+    spotifyUrl: "https://open.spotify.com/show/6hxbjjh61JqjUom6iSsZbC",
     appleUrl:
       "https://podcasts.apple.com/us/podcast/think-big-bodybuilding/id1561623662",
     sampleVideoId: "c5WzQ54wrvA",
@@ -43,7 +43,7 @@ export const shows = [
     youtubePlaylist: "https://www.youtube.com/@ThinkBIGBodybuilding/playlists",
     youtubeChannel: "https://www.youtube.com/@ThinkBIGBodybuilding",
     youtubePlaylistId: "PLhB9QHZc60ahy9oeOjQm1vDrWU_RzhnWD",
-    spotifyUrl: "https://open.spotify.com/show/0RZgpBPeXPcRLmhG5rDr2X",
+    spotifyUrl: "https://open.spotify.com/show/6hxbjjh61JqjUom6iSsZbC",
     appleUrl:
       "https://podcasts.apple.com/us/podcast/think-big-bodybuilding/id1561623662",
     sampleVideoId: "ybu_KL-4srQ",
@@ -72,7 +72,7 @@ export const shows = [
     youtubePlaylist: "https://www.youtube.com/@ThinkBIGBodybuilding/playlists",
     youtubeChannel: "https://www.youtube.com/@ThinkBIGBodybuilding",
     youtubePlaylistId: "PLhB9QHZc60aislEdQX3WzLQDTgi3RMxsy",
-    spotifyUrl: "https://open.spotify.com/show/0RZgpBPeXPcRLmhG5rDr2X",
+    spotifyUrl: "https://open.spotify.com/show/6hxbjjh61JqjUom6iSsZbC",
     appleUrl:
       "https://podcasts.apple.com/us/podcast/think-big-bodybuilding/id1561623662",
     sampleVideoId: "N9DydIU06SM",
@@ -101,7 +101,7 @@ export const shows = [
     youtubePlaylist: "https://www.youtube.com/@ThinkBIGBodybuilding/playlists",
     youtubeChannel: "https://www.youtube.com/@ThinkBIGBodybuilding",
     youtubePlaylistId: "PLhB9QHZc60aj2tzC48MmeY03ULd6NUpzi",
-    spotifyUrl: "https://open.spotify.com/show/0RZgpBPeXPcRLmhG5rDr2X",
+    spotifyUrl: "https://open.spotify.com/show/6hxbjjh61JqjUom6iSsZbC",
     appleUrl:
       "https://podcasts.apple.com/us/podcast/think-big-bodybuilding/id1561623662",
     sampleVideoId: "ST4gODHpGPM",
