@@ -27,7 +27,7 @@ export const sponsors = [
     name: "Parabolic Peptides",
     code: "THINK",
     description: "Research peptides — 10% off",
-    url: "#",
+    url: "https://parabolicpeptides.com/",
     color: "#7c3aed",
     category: "Peptides",
     fullDescription:
@@ -37,7 +37,7 @@ export const sponsors = [
     name: "Modern Aminos",
     code: "THINKBIG",
     description: "Premium amino acid supplements",
-    url: "#",
+    url: "https://modernaminos.com/",
     color: "#059669",
     category: "Supplements",
     fullDescription:
@@ -47,7 +47,7 @@ export const sponsors = [
     name: "Strom Sports",
     code: null,
     description: "UK performance supplements",
-    url: "#",
+    url: "https://stromsportsus.com/",
     color: "#dc2626",
     category: "Performance",
     fullDescription:

@@ -13,10 +13,11 @@ export const shows = [
     episodeCount: "300+",
     youtubePlaylist: "https://www.youtube.com/@ThinkBIGBodybuilding/playlists",
     youtubeChannel: "https://www.youtube.com/@ThinkBIGBodybuilding",
-    spotifyUrl: "https://open.spotify.com/show/0RZgpBPeXPcRLmhG5rDr2X",
+    spotifyUrl: "https://open.spotify.com/search/Blood%20Sweat%20Gear%20Think%20BIG/podcasts",
     appleUrl:
       "https://podcasts.apple.com/us/podcast/think-big-bodybuilding/id1561623662",
     sampleVideoId: "c5WzQ54wrvA",
+    rssKeyword: "Blood Sweat",
     topics: [
       "Contest prep",
       "Steroid education",
@@ -40,10 +41,11 @@ export const shows = [
     episodeCount: "300+",
     youtubePlaylist: "https://www.youtube.com/@ThinkBIGBodybuilding/playlists",
     youtubeChannel: "https://www.youtube.com/@ThinkBIGBodybuilding",
-    spotifyUrl: "https://open.spotify.com/show/0RZgpBPeXPcRLmhG5rDr2X",
+    spotifyUrl: "https://open.spotify.com/search/Drugs%20N%20Stuff%20Think%20BIG/podcasts",
     appleUrl:
       "https://podcasts.apple.com/us/podcast/think-big-bodybuilding/id1561623662",
     sampleVideoId: "ybu_KL-4srQ",
+    rssKeyword: "Drugs n Stuff",
     topics: [
       "Anabolic steroids",
       "TRT",
@@ -67,10 +69,11 @@ export const shows = [
     episodeCount: "355+",
     youtubePlaylist: "https://www.youtube.com/@ThinkBIGBodybuilding/playlists",
     youtubeChannel: "https://www.youtube.com/@ThinkBIGBodybuilding",
-    spotifyUrl: "https://open.spotify.com/show/0RZgpBPeXPcRLmhG5rDr2X",
+    spotifyUrl: "https://open.spotify.com/search/It's%20Just%20Bodybuilding%20Think%20BIG/podcasts",
     appleUrl:
       "https://podcasts.apple.com/us/podcast/think-big-bodybuilding/id1561623662",
     sampleVideoId: "N9DydIU06SM",
+    rssKeyword: "Just Bodybuilding",
     topics: [
       "IFBB Pro interviews",
       "Olympia coverage",
@@ -94,10 +97,11 @@ export const shows = [
     episodeCount: "175+",
     youtubePlaylist: "https://www.youtube.com/@ThinkBIGBodybuilding/playlists",
     youtubeChannel: "https://www.youtube.com/@ThinkBIGBodybuilding",
-    spotifyUrl: "https://open.spotify.com/show/0RZgpBPeXPcRLmhG5rDr2X",
+    spotifyUrl: "https://open.spotify.com/search/Muscle%20Minds%20Think%20BIG/podcasts",
     appleUrl:
       "https://podcasts.apple.com/us/podcast/think-big-bodybuilding/id1561623662",
     sampleVideoId: "ST4gODHpGPM",
+    rssKeyword: "Muscle Minds",
     topics: [
       "Training science",
       "Muscle physiology",
