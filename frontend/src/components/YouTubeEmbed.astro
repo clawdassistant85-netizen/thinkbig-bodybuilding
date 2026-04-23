@@ -7,22 +7,75 @@ export interface Props {
 const { videoId, title = "YouTube video player" } = Astro.props;
 ---
 
-<div
-  class="relative w-full aspect-video rounded-lg overflow-hidden bg-[#141414] border border-[#222] shadow-[0_10px_40px_-10px_rgba(220,38,38,0.25)]"
->
-  <div
-    class="absolute inset-0 flex items-center justify-center text-neutral-600 text-sm"
-    aria-hidden="true"
-  >
-    Loading video…
+<div class="yt-wrap">
+  <div class="yt-facade" data-id={videoId} data-title={title}>
+    <img
+      src={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`}
+      alt={title}
+      loading="lazy"
+      class="yt-thumb"
+    />
+    <button class="yt-play" aria-label={`Play ${title}`}>
+      <svg width="64" height="45" viewBox="0 0 68 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79 0 34 0 34 0S12.21 0 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C0 13.05 0 24 0 24s0 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 48 34 48 34 48s21.79 0 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C68 34.95 68 24 68 24s0-10.95-1.48-16.26z" fill="#FF0000"/>
+        <path d="M45 24 27 14v20l18-10z" fill="white"/>
+      </svg>
+    </button>
   </div>
-  <iframe
-    class="relative w-full h-full"
-    src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1`}
-    title={title}
-    loading="lazy"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen></iframe>
 </div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.yt-facade').forEach((facade) => {
+    facade.querySelector('.yt-play')?.addEventListener('click', () => {
+      const id = facade.dataset.id!;
+      const t = facade.dataset.title ?? 'YouTube video player';
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1`;
+      iframe.title = t;
+      iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+      iframe.setAttribute('allowfullscreen', '');
+      iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;';
+      facade.replaceWith(iframe);
+    }, { once: true });
+  });
+</script>
+
+<style>
+  .yt-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #0a0a0a;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid #222;
+    box-shadow: 0 10px 40px -10px rgba(220,38,38,0.2);
+  }
+  .yt-facade {
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+  }
+  .yt-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.8);
+    transition: filter 200ms;
+  }
+  .yt-facade:hover .yt-thumb { filter: brightness(0.6); }
+  .yt-play {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: transform 150ms;
+  }
+  .yt-play:hover { transform: scale(1.07); }
+  .yt-play svg { filter: drop-shadow(0 2px 12px rgba(0,0,0,0.6)); }
+</style>

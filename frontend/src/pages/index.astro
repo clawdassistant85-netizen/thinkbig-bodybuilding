@@ -1,6 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import ShowCard from "../components/ShowCard.astro";
 import SponsorBar from "../components/SponsorBar.astro";
 import HostCard from "../components/HostCard.astro";
 import YouTubeEmbed from "../components/YouTubeEmbed.astro";
@@ -102,9 +101,82 @@ function accentFor(showCodes) {
         </p>
       </div>
     </div>
-    <div class="shows-list">
-      {shows.map((show, i) => <ShowCard show={show} index={i} />)}
+
+    <div class="shows-grid">
+      {shows.map((show) => (
+        <div class="show-feat" style={`--c:${show.color};`}>
+
+          {/* Video thumbnail */}
+          <div class="show-vid-wrap">
+            <div class="show-yt-facade" data-id={show.sampleVideoId} data-title={show.name}>
+              <img
+                src={`https://i.ytimg.com/vi/${show.sampleVideoId}/hqdefault.jpg`}
+                alt={`${show.name} — latest episode`}
+                loading="lazy"
+                class="show-yt-thumb"
+              />
+              <button class="show-yt-play" aria-label={`Play ${show.name}`}>
+                <svg width="56" height="40" viewBox="0 0 68 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79 0 34 0 34 0S12.21 0 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C0 13.05 0 24 0 24s0 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 48 34 48 34 48s21.79 0 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C68 34.95 68 24 68 24s0-10.95-1.48-16.26z" fill="#FF0000"/>
+                  <path d="M45 24 27 14v20l18-10z" fill="white"/>
+                </svg>
+              </button>
+            </div>
+            <span class="show-eps-tag">{show.episodeCount} eps</span>
+          </div>
+
+          {/* Show info */}
+          <div class="show-body">
+            <div class="show-body-top">
+              <h3 class="show-feat-name">{show.name}</h3>
+              <p class="show-feat-tagline">{show.tagline}</p>
+            </div>
+
+            <p class="show-feat-desc">{show.description}</p>
+
+            <div class="show-feat-topics">
+              {show.topics.slice(0, 4).map((t) => (
+                <span class="show-feat-topic">{t}</span>
+              ))}
+            </div>
+
+            <div class="show-feat-foot">
+              <p class="show-feat-hosts">{show.hosts.join(' · ')}</p>
+              <div class="show-feat-actions">
+                <a href={show.spotifyUrl} target="_blank" rel="noopener noreferrer"
+                   class="show-icon-btn" title="Listen on Spotify">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                </a>
+                <a href={show.appleUrl} target="_blank" rel="noopener noreferrer"
+                   class="show-icon-btn" title="Apple Podcasts">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.182c5.415 0 9.818 4.403 9.818 9.818S17.415 21.818 12 21.818 2.182 17.415 2.182 12 6.585 2.182 12 2.182zm0 2.545c-4.017 0-7.273 3.256-7.273 7.273S7.983 19.273 12 19.273s7.273-3.256 7.273-7.273S16.017 4.727 12 4.727zm0 1.637c3.108 0 5.636 2.528 5.636 5.636S15.108 17.636 12 17.636 6.364 15.108 6.364 12 8.892 6.364 12 6.364zm0 2.727c-.602 0-1.09.489-1.09 1.09v4.365c0 .602.488 1.09 1.09 1.09s1.09-.488 1.09-1.09v-4.364c0-.602-.488-1.091-1.09-1.091zm0-2.182c-.752 0-1.364.612-1.364 1.364S11.248 9.818 12 9.818s1.364-.612 1.364-1.364S12.752 6.909 12 6.909z"/></svg>
+                </a>
+                <a href={`${base}${show.slug}`} class="show-cta-btn">
+                  Full Show
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
     </div>
+
+    <script>
+      document.querySelectorAll('.show-yt-facade').forEach((facade) => {
+        const el = facade as HTMLElement;
+        el.querySelector('.show-yt-play')?.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const id = el.dataset.id;
+          const iframe = document.createElement('iframe');
+          iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1`;
+          iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+          iframe.setAttribute('allowfullscreen', '');
+          iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;';
+          el.replaceWith(iframe);
+        }, { once: true });
+      });
+    </script>
   </section>
 
   <!-- ─── HOSTS ─────────────────────────────────────────── -->
@@ -370,7 +442,7 @@ function accentFor(showCodes) {
   }
 
   /* ── SHOWS ──────────────────────────────────────────── */
-  .shows-section { padding: 4.5rem 0 0; }
+  .shows-section { padding: 4.5rem 0 5rem; }
   .section-header {
     display: flex;
     align-items: flex-start;
@@ -379,14 +451,195 @@ function accentFor(showCodes) {
     flex-wrap: wrap;
     margin-bottom: 2.5rem;
   }
-  .shows-list {
+
+  .shows-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  @media (max-width: 860px) { .shows-grid { grid-template-columns: 1fr; } }
+
+  /* Card */
+  .show-feat {
+    background: #111;
+    border: 1px solid #1e1e1e;
+    border-radius: 8px;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    gap: 0;
-    border-top: 1px solid #1a1a1a;
-    border-bottom: 1px solid #1a1a1a;
-    margin-top: 0;
+    transition: border-color 200ms;
   }
+  .show-feat:hover { border-color: color-mix(in srgb, var(--c) 55%, transparent); }
+
+  /* Video area */
+  .show-vid-wrap {
+    position: relative;
+    aspect-ratio: 16/9;
+    background: #0a0a0a;
+    border-bottom: 3px solid var(--c);
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .show-yt-facade {
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+  }
+  .show-yt-thumb {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.78);
+    transition: filter 220ms;
+  }
+  .show-feat:hover .show-yt-thumb { filter: brightness(0.6); }
+  .show-yt-play {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: transform 160ms;
+  }
+  .show-yt-play:hover { transform: scale(1.07); }
+  .show-yt-play svg { filter: drop-shadow(0 2px 12px rgba(0,0,0,0.6)); }
+
+  .show-eps-tag {
+    position: absolute;
+    top: 0.75rem; right: 0.75rem;
+    font-size: 0.58rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    padding: 0.22rem 0.6rem;
+    border-radius: 3px;
+    color: var(--c);
+    background: rgba(0,0,0,0.72);
+    border: 1px solid color-mix(in srgb, var(--c) 45%, transparent);
+    backdrop-filter: blur(4px);
+    pointer-events: none;
+  }
+
+  /* Body */
+  .show-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1;
+  }
+  .show-body-top { display: flex; flex-direction: column; gap: 0.3rem; }
+
+  .show-feat-name {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin: 0;
+    transition: color 160ms;
+  }
+  .show-feat:hover .show-feat-name { color: var(--c); }
+
+  .show-feat-tagline {
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--c);
+    margin: 0;
+    opacity: 0.9;
+  }
+
+  .show-feat-desc {
+    font-size: 0.83rem;
+    color: #5a5a5a;
+    line-height: 1.65;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .show-feat-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .show-feat-topic {
+    font-size: 0.56rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 0.2rem 0.55rem;
+    border: 1px solid color-mix(in srgb, var(--c) 30%, transparent);
+    border-radius: 2px;
+    color: color-mix(in srgb, var(--c) 75%, #888);
+    background: color-mix(in srgb, var(--c) 8%, transparent);
+  }
+
+  .show-feat-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    padding-top: 1rem;
+    border-top: 1px solid #1e1e1e;
+    margin-top: auto;
+  }
+  .show-feat-hosts {
+    font-size: 0.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #3a3a3a;
+    margin: 0;
+    flex: 1;
+    min-width: 0;
+  }
+  .show-feat-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-shrink: 0;
+  }
+  .show-icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px; height: 28px;
+    border-radius: 3px;
+    border: 1px solid #222;
+    color: #3a3a3a;
+    text-decoration: none;
+    transition: color 140ms, border-color 140ms;
+  }
+  .show-icon-btn:hover { color: #888; border-color: #444; }
+  .show-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.38rem 0.85rem;
+    border-radius: 3px;
+    font-size: 0.6rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #fff;
+    background: var(--c);
+    text-decoration: none;
+    transition: opacity 140ms;
+    white-space: nowrap;
+  }
+  .show-cta-btn:hover { opacity: 0.85; }
 
   /* ── HOSTS ──────────────────────────────────────────── */
   .hosts-section {

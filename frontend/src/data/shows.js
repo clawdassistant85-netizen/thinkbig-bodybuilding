@@ -16,7 +16,7 @@ export const shows = [
     spotifyUrl: "https://open.spotify.com/show/0RZgpBPeXPcRLmhG5rDr2X",
     appleUrl:
       "https://podcasts.apple.com/us/podcast/think-big-bodybuilding/id1561623662",
-    sampleVideoId: "placeholder_bsg",
+    sampleVideoId: "c5WzQ54wrvA",
     topics: [
       "Contest prep",
       "Steroid education",
