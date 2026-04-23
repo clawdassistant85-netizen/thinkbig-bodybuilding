@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+@theme {
+  --color-tb-bg: #0a0a0a;
+  --color-tb-surface: #141414;
+  --color-tb-border: #222222;
+  --color-tb-red: #dc2626;
+  --color-tb-gold: #d97706;
+  --color-tb-violet: #7c3aed;
+  --color-tb-cyan: #0891b2;
+  --color-tb-text: #f5f5f5;
+  --color-tb-muted: #737373;
+
+  --font-sans:
+    "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+:root {
+  color-scheme: dark;
+  --tb-bg: #0a0a0a;
+  --tb-surface: #141414;
+  --tb-border: #222222;
+  --tb-red: #dc2626;
+  --tb-gold: #d97706;
+  --tb-text: #f5f5f5;
+  --tb-muted: #737373;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--tb-bg);
+}
+
+body {
+  background: var(--tb-bg);
+  color: var(--tb-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-sans);
+}
+
+/* Utility: uppercase tracked section label */
+.tb-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+/* Subtle red radial glow for heroes */
+.tb-hero-glow {
+  background:
+    radial-gradient(
+      ellipse at top,
+      rgba(220, 38, 38, 0.18),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse at bottom right,
+      rgba(217, 119, 6, 0.08),
+      transparent 50%
+    ),
+    #0a0a0a;
+}
+
+.tb-show-hero-red {
+  background:
+    radial-gradient(ellipse at top, rgba(220, 38, 38, 0.22), transparent 60%),
+    #0a0a0a;
+}
+
+.tb-show-hero-amber {
+  background:
+    radial-gradient(ellipse at top, rgba(217, 119, 6, 0.22), transparent 60%),
+    #0a0a0a;
+}
+
+.tb-show-hero-violet {
+  background:
+    radial-gradient(ellipse at top, rgba(124, 58, 237, 0.22), transparent 60%),
+    #0a0a0a;
+}
+
+.tb-show-hero-cyan {
+  background:
+    radial-gradient(ellipse at top, rgba(8, 145, 178, 0.22), transparent 60%),
+    #0a0a0a;
+}
+
+/* Card base */
+.tb-card {
+  background: var(--tb-surface);
+  border: 1px solid var(--tb-border);
+  transition:
+    transform 200ms ease,
+    border-color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.tb-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Horizontal scroll strip */
+.tb-scroll-x {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.tb-scroll-x::-webkit-scrollbar {
+  display: none;
+}
+
+/* Noise texture overlay (optional subtle grain) */
+.tb-grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.015) 1px,
+    transparent 1px
+  );
+  background-size: 3px 3px;
+  mix-blend-mode: overlay;
+  opacity: 0.6;
+}
+
+/* Mobile nav toggle (pure CSS via :checked) */
+#tb-nav-toggle:checked ~ #tb-mobile-nav {
+  display: flex;
+}
+
+/* Focus ring */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--tb-red);
+  outline-offset: 2px;
+  border-radius: 2px;
+}

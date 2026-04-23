@@ -1,0 +1,13 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ShowPage from "../components/ShowPage.astro";
+import { getShowBySlug } from "../data/shows.js";
+
+const show = getShowBySlug("its-just-bodybuilding");
+const title = `${show.name} — ${show.tagline} | Think BIG Bodybuilding`;
+const description = show.description;
+---
+
+<Layout title={title} description={description}>
+  <ShowPage show={show} heroClass="tb-show-hero-violet" />
+</Layout>

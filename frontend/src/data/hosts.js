@@ -1,0 +1,51 @@
+export const hosts = [
+  {
+    id: "scott-mcnally",
+    name: "Scott McNally",
+    role: "Founder & Host",
+    shows: ["BSG", "DNS", "IJB", "MM"],
+    bio: "The voice behind the Think BIG network. Coach, host, and producer — Scott appears on every show in the network and has built Think BIG into one of the most trusted names in hardcore bodybuilding media. Reach him at mcnallydiets@gmail.com.",
+  },
+  {
+    id: "big-ron-partlow",
+    name: "Big Ron Partlow",
+    role: "IFBB Pro",
+    shows: ["IJB"],
+    bio: "IFBB Pro bodybuilder and the unmistakable personality driving It's Just Bodybuilding. Ron brings decades of on-stage and behind-the-scenes experience, plus the kind of unfiltered takes you won't hear anywhere else.",
+  },
+  {
+    id: "dusty-hanshaw",
+    name: "Dusty Hanshaw",
+    role: "IFBB Pro",
+    shows: ["IJB"],
+    bio: "IFBB Pro bodybuilder and co-host of It's Just Bodybuilding. Dusty combines elite-level competitive experience with a sharp sense of humor and deep respect for the sport's history.",
+  },
+  {
+    id: "skip-hill",
+    name: "Skip Hill",
+    role: "Prep Coach",
+    shows: ["BSG"],
+    bio: "Veteran prep coach and one of the original voices of Blood Sweat & Gear. Skip is known for his no-nonsense approach to contest prep and decades of experience coaching serious competitors.",
+  },
+  {
+    id: "andrew-berry",
+    name: "Andrew Berry",
+    role: "Prep Coach",
+    shows: ["BSG"],
+    bio: "Prep coach and co-host of Blood Sweat & Gear. Andrew brings a scientific, detail-oriented approach to contest prep questions, balancing Skip's old-school wisdom with modern application.",
+  },
+  {
+    id: "dave-crosland",
+    name: "Dave Crosland",
+    role: "Harm Reduction Specialist",
+    shows: ["DNS"],
+    bio: "UK-based harm-reduction specialist and the educational backbone of Drugs N Stuff. Dave's deep knowledge of PEDs, TRT, and ancillary compounds has made DNS the most respected harm-reduction show in bodybuilding.",
+  },
+  {
+    id: "dr-scott-stevenson",
+    name: "Dr. Scott Stevenson",
+    role: "PhD Exercise Physiology",
+    shows: ["MM"],
+    bio: "PhD exercise physiologist and co-host of Muscle Minds. Dr. Stevenson brings academic rigor to bodybuilding conversations, translating peer-reviewed research into practical programming insight for serious lifters.",
+  },
+];

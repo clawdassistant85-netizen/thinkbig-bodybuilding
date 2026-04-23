@@ -1,0 +1,54 @@
+---
+export interface Props {
+  name: string;
+  role: string;
+  shows: string[];
+  bio: string;
+  accent?: string;
+}
+
+const { name, role, shows, bio, accent = "#dc2626" } = Astro.props;
+
+const initials = name
+  .split(" ")
+  .map((n) => n[0])
+  .slice(0, 2)
+  .join("")
+  .toUpperCase();
+---
+
+<article
+  class="tb-card rounded-lg p-6 flex flex-col gap-3 border border-[#222] hover:border-[#333]"
+>
+  <div class="flex items-center gap-4">
+    <div
+      class="shrink-0 w-14 h-14 rounded-full flex items-center justify-center font-black text-lg text-white border"
+      style={`background: linear-gradient(135deg, ${accent}33, #141414); border-color:${accent}55;`}
+    >
+      {initials}
+    </div>
+    <div class="min-w-0">
+      <h3 class="text-lg font-bold text-white leading-tight truncate">
+        {name}
+      </h3>
+      <p
+        class="tb-label mt-1"
+        style={`color:${accent};`}
+      >
+        {role}
+      </p>
+    </div>
+  </div>
+
+  <div class="flex flex-wrap gap-1.5">
+    {
+      shows.map((s) => (
+        <span class="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded bg-[#161616] border border-[#222] text-neutral-400">
+          {s}
+        </span>
+      ))
+    }
+  </div>
+
+  <p class="text-sm text-neutral-400 leading-relaxed">{bio}</p>
+</article>

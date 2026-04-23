@@ -1,0 +1,28 @@
+---
+export interface Props {
+  videoId: string;
+  title?: string;
+}
+
+const { videoId, title = "YouTube video player" } = Astro.props;
+---
+
+<div
+  class="relative w-full aspect-video rounded-lg overflow-hidden bg-[#141414] border border-[#222] shadow-[0_10px_40px_-10px_rgba(220,38,38,0.25)]"
+>
+  <div
+    class="absolute inset-0 flex items-center justify-center text-neutral-600 text-sm"
+    aria-hidden="true"
+  >
+    Loading video…
+  </div>
+  <iframe
+    class="relative w-full h-full"
+    src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1`}
+    title={title}
+    loading="lazy"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen></iframe>
+</div>

@@ -1,0 +1,148 @@
+---
+export interface Props {
+  show: {
+    id: string;
+    name: string;
+    shortName: string;
+    slug: string;
+    color: string;
+    tagline: string;
+    description: string;
+    hosts: string[];
+    episodeCount: string;
+    spotifyUrl: string;
+    appleUrl: string;
+    topics: string[];
+    icon: string;
+  };
+}
+
+const { show } = Astro.props;
+---
+
+<article
+  class="tb-card group relative rounded-lg overflow-hidden p-6 md:p-7 flex flex-col gap-4 border-l-4"
+  style={`border-left-color:${show.color}; box-shadow: 0 0 0 1px #222 inset;`}
+>
+  <!-- Hover glow -->
+  <div
+    class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
+    style={`background: radial-gradient(ellipse at top left, ${show.color}22, transparent 60%);`}
+  >
+  </div>
+
+  <div class="relative flex items-start justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <span
+        class="text-3xl leading-none select-none"
+        aria-hidden="true">{show.icon}</span
+      >
+      <div>
+        <a
+          href={`/${show.slug}`}
+          class="block text-xl md:text-2xl font-black text-white tracking-tight hover:underline"
+          style={`text-decoration-color:${show.color};`}
+        >
+          {show.name}
+        </a>
+        <p
+          class="tb-label mt-1"
+          style={`color:${show.color};`}
+        >
+          {show.tagline}
+        </p>
+      </div>
+    </div>
+    <span
+      class="shrink-0 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded border"
+      style={`color:${show.color}; border-color:${show.color}55; background:${show.color}11;`}
+    >
+      {show.episodeCount} eps
+    </span>
+  </div>
+
+  <p class="relative text-sm text-neutral-400 leading-relaxed">
+    {show.description}
+  </p>
+
+  <!-- Hosts -->
+  <div class="relative flex flex-wrap gap-2">
+    {
+      show.hosts.map((h) => (
+        <span class="text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full bg-[#1f1f1f] text-neutral-300 border border-[#2a2a2a]">
+          {h}
+        </span>
+      ))
+    }
+  </div>
+
+  <!-- Topics -->
+  <div class="relative flex flex-wrap gap-1.5 pt-1">
+    {
+      show.topics.map((t) => (
+        <span class="text-[10px] text-neutral-500 px-2 py-0.5 rounded bg-[#161616] border border-[#222]">
+          {t}
+        </span>
+      ))
+    }
+  </div>
+
+  <!-- CTAs -->
+  <div class="relative flex items-center gap-3 pt-3 mt-auto">
+    <a
+      href={`/${show.slug}`}
+      class="inline-flex items-center gap-2 px-4 py-2 rounded text-xs font-bold uppercase tracking-widest text-white transition-transform hover:-translate-y-0.5"
+      style={`background:${show.color};`}
+    >
+      Listen Now
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        ><line x1="5" y1="12" x2="19" y2="12"></line><polyline
+          points="12 5 19 12 12 19"></polyline></svg
+      >
+    </a>
+    <a
+      href={show.spotifyUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Spotify"
+      class="p-2 rounded border border-[#222] text-neutral-400 hover:text-[#1DB954] hover:border-[#1DB954] transition-colors"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        ><path
+          d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"
+        ></path></svg
+      >
+    </a>
+    <a
+      href={show.appleUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Apple Podcasts"
+      class="p-2 rounded border border-[#222] text-neutral-400 hover:text-[#a66cff] hover:border-[#a66cff] transition-colors"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        ><path
+          d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 4.1c3.2 0 5.8 2.6 5.8 5.8 0 2.2-1.2 4.1-3 5.1v1c0 .8-.6 1.5-1.4 1.6l-.1.1c-.4 1-1.4 1.7-2.6 1.7-1.3 0-2.3-.8-2.7-1.9-.7-.2-1.2-.9-1.2-1.6v-.9c-1.8-1-3-2.9-3-5.1 0-3.2 2.6-5.8 5.8-5.8h2.4zM12 6c-2.2 0-4 1.8-4 4 0 1.5.9 2.9 2.2 3.5v-1.1c0-.5.4-.9.9-.9h1.7c.5 0 .9.4.9.9v1.1c1.3-.6 2.2-2 2.2-3.5 0-2.2-1.8-4-3.9-4z"
+        ></path></svg
+      >
+    </a>
+  </div>
+</article>

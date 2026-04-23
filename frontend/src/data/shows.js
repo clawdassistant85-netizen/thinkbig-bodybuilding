@@ -1,0 +1,114 @@
+export const shows = [
+  {
+    id: "blood-sweat-gear",
+    name: "Blood Sweat & Gear",
+    shortName: "BSG",
+    slug: "blood-sweat-gear",
+    color: "#dc2626",
+    colorName: "red",
+    tagline: "Real prep. Real gear. Real talk.",
+    description:
+      "300+ episodes of no-BS contest prep coaching. Three experienced prep coaches — Skip Hill, Andrew Berry, and Scott McNally — answer listener questions on training, nutrition, PEDs, and everything that goes into building a championship physique.",
+    hosts: ["Skip Hill", "Andrew Berry", "Scott McNally"],
+    episodeCount: "300+",
+    youtubePlaylist: "https://www.youtube.com/@ThinkBIGBodybuilding/playlists",
+    youtubeChannel: "https://www.youtube.com/@ThinkBIGBodybuilding",
+    spotifyUrl: "https://open.spotify.com/show/0RZgpBPeXPcRLmhG5rDr2X",
+    appleUrl:
+      "https://podcasts.apple.com/us/podcast/think-big-bodybuilding/id1561623662",
+    sampleVideoId: "placeholder_bsg",
+    topics: [
+      "Contest prep",
+      "Steroid education",
+      "Training principles",
+      "Physique critiques",
+      "Olympia coverage",
+    ],
+    icon: "💪",
+  },
+  {
+    id: "drugs-n-stuff",
+    name: "Drugs N Stuff",
+    shortName: "DNS",
+    slug: "drugs-n-stuff",
+    color: "#d97706",
+    colorName: "amber",
+    tagline: "Education. Harm reduction. No judgment.",
+    description:
+      "300+ episodes of frank, education-first discussion on anabolic steroids, PEDs, TRT, and harm-reduction strategies. Dave Crosland and Scott McNally answer listener questions with zero filter and maximum knowledge.",
+    hosts: ["Dave Crosland", "Scott McNally"],
+    episodeCount: "300+",
+    youtubePlaylist: "https://www.youtube.com/@ThinkBIGBodybuilding/playlists",
+    youtubeChannel: "https://www.youtube.com/@ThinkBIGBodybuilding",
+    spotifyUrl: "https://open.spotify.com/show/0RZgpBPeXPcRLmhG5rDr2X",
+    appleUrl:
+      "https://podcasts.apple.com/us/podcast/think-big-bodybuilding/id1561623662",
+    sampleVideoId: "pjBYVpp0U7E",
+    topics: [
+      "Anabolic steroids",
+      "TRT",
+      "PED harm reduction",
+      "Compound deep-dives",
+      "Listener Q&A",
+    ],
+    icon: "🧬",
+  },
+  {
+    id: "its-just-bodybuilding",
+    name: "It's Just Bodybuilding",
+    shortName: "IJB",
+    slug: "its-just-bodybuilding",
+    color: "#7c3aed",
+    colorName: "violet",
+    tagline: "Two pros. Zero filter. Pure bodybuilding.",
+    description:
+      "355+ episodes with IFBB Pros Big Ron Partlow and Dusty Hanshaw — the most personality-driven show in the network. Unfiltered conversation, major guest interviews, Olympia predictions, and Coach's Corner Q&A.",
+    hosts: ["Big Ron Partlow", "Dusty Hanshaw", "Scott McNally"],
+    episodeCount: "355+",
+    youtubePlaylist: "https://www.youtube.com/@ThinkBIGBodybuilding/playlists",
+    youtubeChannel: "https://www.youtube.com/@ThinkBIGBodybuilding",
+    spotifyUrl: "https://open.spotify.com/show/0RZgpBPeXPcRLmhG5rDr2X",
+    appleUrl:
+      "https://podcasts.apple.com/us/podcast/think-big-bodybuilding/id1561623662",
+    sampleVideoId: "N9DydIU06SM",
+    topics: [
+      "IFBB Pro interviews",
+      "Olympia coverage",
+      "Training talk",
+      "Industry news",
+      "Coach's Corner",
+    ],
+    icon: "🏆",
+  },
+  {
+    id: "muscle-minds",
+    name: "Muscle Minds",
+    shortName: "MM",
+    slug: "muscle-minds",
+    color: "#0891b2",
+    colorName: "cyan",
+    tagline: "The science behind the size.",
+    description:
+      "175+ episodes diving deep into training science, muscle physiology, programming, nutrition strategy, and bodybuilding philosophy with PhD exercise physiologist Dr. Scott Stevenson and Scott McNally.",
+    hosts: ["Dr. Scott Stevenson", "Scott McNally"],
+    episodeCount: "175+",
+    youtubePlaylist: "https://www.youtube.com/@ThinkBIGBodybuilding/playlists",
+    youtubeChannel: "https://www.youtube.com/@ThinkBIGBodybuilding",
+    spotifyUrl: "https://open.spotify.com/show/0RZgpBPeXPcRLmhG5rDr2X",
+    appleUrl:
+      "https://podcasts.apple.com/us/podcast/think-big-bodybuilding/id1561623662",
+    sampleVideoId: "ST4gODHpGPM",
+    topics: [
+      "Training science",
+      "Muscle physiology",
+      "Programming",
+      "Peak week",
+      "Bodybuilding philosophy",
+    ],
+    icon: "🔬",
+  },
+];
+
+export function getShowBySlug(slug) {
+  return shows.find((s) => s.slug === slug);
+}

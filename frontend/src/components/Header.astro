@@ -1,0 +1,151 @@
+---
+import { shows } from "../data/shows.js";
+import { social } from "../data/social.js";
+---
+
+<header
+  class="sticky top-0 z-50 bg-[#0a0a0a]/95 backdrop-blur-md border-b border-[#222]"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <a
+        href="/"
+        class="flex items-center gap-2 font-black text-xl tracking-tight"
+      >
+        <span class="text-neutral-100">Think</span>
+        <span class="text-[#dc2626]">BIG</span>
+        <span
+          class="hidden sm:inline text-[10px] font-bold uppercase tracking-widest text-neutral-500 ml-1 border-l border-[#222] pl-2"
+        >
+          Bodybuilding Media
+        </span>
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="hidden lg:flex items-center gap-6">
+        {
+          shows.map((show) => (
+            <a
+              href={`/${show.slug}`}
+              class="text-sm font-semibold text-neutral-300 transition-colors hover:text-white"
+              style={`--show-color:${show.color};`}
+              data-show={show.slug}
+            >
+              {show.name}
+            </a>
+          ))
+        }
+        <a
+          href="/about"
+          class="text-sm font-semibold text-neutral-300 hover:text-white transition-colors"
+        >
+          About
+        </a>
+      </nav>
+
+      <!-- Actions -->
+      <div class="hidden lg:flex items-center gap-3">
+        <a
+          href={social.patreon}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-4 py-2 text-xs font-bold uppercase tracking-widest text-[#dc2626] border border-[#dc2626] rounded hover:bg-[#dc2626] hover:text-white transition-colors"
+        >
+          Patreon
+        </a>
+        <a
+          href={social.youtube}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="YouTube"
+          class="p-2 text-neutral-400 hover:text-[#dc2626] transition-colors"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path
+              d="M23.498 6.186a2.99 2.99 0 0 0-2.107-2.117C19.455 3.55 12 3.55 12 3.55s-7.455 0-9.391.519A2.99 2.99 0 0 0 .502 6.186C0 8.132 0 12 0 12s0 3.868.502 5.814a2.99 2.99 0 0 0 2.107 2.117c1.936.519 9.391.519 9.391.519s7.455 0 9.391-.519a2.99 2.99 0 0 0 2.107-2.117C24 15.868 24 12 24 12s0-3.868-.502-5.814zM9.546 15.568V8.432L15.818 12l-6.272 3.568z"
+            ></path>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <label
+        for="tb-nav-toggle"
+        class="lg:hidden cursor-pointer p-2 text-neutral-200"
+        aria-label="Open menu"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          ><line x1="3" y1="6" x2="21" y2="6"></line><line
+            x1="3"
+            y1="12"
+            x2="21"
+            y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg
+        >
+      </label>
+      <input type="checkbox" id="tb-nav-toggle" class="hidden peer" />
+    </div>
+  </div>
+
+  <!-- Mobile nav panel -->
+  <div
+    id="tb-mobile-nav"
+    class="lg:hidden hidden peer-checked:flex flex-col gap-1 px-4 pb-4 pt-2 border-t border-[#222] bg-[#0a0a0a]"
+  >
+    {
+      shows.map((show) => (
+        <a
+          href={`/${show.slug}`}
+          class="flex items-center gap-3 py-3 px-2 rounded hover:bg-[#141414] transition-colors"
+        >
+          <span
+            class="inline-block w-1 h-6 rounded"
+            style={`background:${show.color};`}
+          />
+          <span class="text-sm font-semibold text-neutral-200">
+            {show.name}
+          </span>
+        </a>
+      ))
+    }
+    <a
+      href="/about"
+      class="py-3 px-2 rounded hover:bg-[#141414] transition-colors text-sm font-semibold text-neutral-200"
+    >
+      About
+    </a>
+    <div class="flex gap-3 pt-3 border-t border-[#222] mt-2">
+      <a
+        href={social.patreon}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex-1 text-center px-4 py-2 text-xs font-bold uppercase tracking-widest text-[#dc2626] border border-[#dc2626] rounded"
+      >
+        Patreon
+      </a>
+      <a
+        href={social.youtube}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex-1 text-center px-4 py-2 text-xs font-bold uppercase tracking-widest text-neutral-200 border border-[#222] rounded"
+      >
+        YouTube
+      </a>
+    </div>
+  </div>
+</header>

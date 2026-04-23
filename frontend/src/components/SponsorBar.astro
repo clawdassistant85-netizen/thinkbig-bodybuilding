@@ -1,0 +1,35 @@
+---
+import { sponsors } from "../data/social.js";
+---
+
+<section class="py-10 border-y border-[#222] bg-[#0d0d0d]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center gap-6">
+      <span class="tb-label text-[#dc2626] shrink-0">Partners</span>
+      <div
+        class="tb-scroll-x flex-1 overflow-x-auto flex items-center gap-3 md:gap-4"
+      >
+        {
+          sponsors.map((s) => (
+            <a
+              href={s.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="shrink-0 flex items-center gap-2 px-4 py-2 rounded-full bg-[#141414] border border-[#222] hover:border-[#dc2626] transition-colors"
+            >
+              <span class="text-sm font-bold text-neutral-200">{s.name}</span>
+              {s.code && (
+                <span class="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded bg-[#dc2626]/15 text-[#dc2626] border border-[#dc2626]/30">
+                  Code: {s.code}
+                </span>
+              )}
+              <span class="hidden md:inline text-xs text-neutral-500">
+                {s.description}
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
