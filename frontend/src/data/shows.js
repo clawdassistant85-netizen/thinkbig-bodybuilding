@@ -43,7 +43,7 @@ export const shows = [
     spotifyUrl: "https://open.spotify.com/show/0RZgpBPeXPcRLmhG5rDr2X",
     appleUrl:
       "https://podcasts.apple.com/us/podcast/think-big-bodybuilding/id1561623662",
-    sampleVideoId: "pjBYVpp0U7E",
+    sampleVideoId: "ybu_KL-4srQ",
     topics: [
       "Anabolic steroids",
       "TRT",
